@@ -331,9 +331,9 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
 .board td{vertical-align:middle}
 .pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;white-space:nowrap}
 .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-3);flex:0 0 auto}
-.pill.p2::before,.pill.p3::before{background:var(--red)}
-.pill.p5::before{background:#2E6B3E}
-.pill.p5{color:#2E6B3E}
+.pill.mid::before{background:var(--red)}
+.pill.done::before{background:#2E6B3E}
+.pill.done{color:#2E6B3E}
 .days{font-family:'IBM Plex Mono',monospace}
 .days.age{color:var(--red);font-weight:500}
 .age-tag{display:block;font-size:11.5px;color:var(--red)}
@@ -411,6 +411,127 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
 .ov-end{padding:14px var(--gutter) max(16px,env(safe-area-inset-bottom));border-top:1px solid var(--line);display:none;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 .ov.ended .ov-end{display:flex}
 .ov-end .lnk{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------------- structure probe (02) ---------------- */
+.probe{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+@media (min-width:820px){.probe{grid-template-columns:1fr 1fr;gap:0}}
+.probe-col{border:1px solid var(--line);background:var(--card);padding:14px}
+@media (min-width:820px){.probe-col+.probe-col{border-left:0}}
+.probe-col.safe{border-color:var(--red)}
+.probe-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-bottom:9px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.probe-h b{font-size:13.5px;font-weight:600}
+.probe-h span{font-size:12px;color:var(--ink-3)}
+.probe-col.safe .probe-h span{color:var(--red);font-weight:500}
+.probe-r{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:4px 0;color:var(--ink-2)}
+.probe-r span:last-child{color:var(--ink)}
+.probe-col.safe .probe-r span:last-child{color:var(--red)}
+.probe-note{margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+
+/* ---------------- board tabs + BO ledger (04) ---------------- */
+.bo-note{margin-top:14px;font-size:12.5px;line-height:1.6;color:var(--ink-3);max-width:70ch}
+.carried{font-family:'IBM Plex Mono',monospace}
+.carried.long{color:var(--red);font-weight:500}
+.sync{margin-top:14px;padding:10px 12px;border-left:3px solid var(--red);background:var(--red-bg);font-size:12.5px;line-height:1.5;display:none}
+.sync.on{display:block}
+.sync b{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--red)}
+
+/* ---------------- account 360 (05) ---------------- */
+.acct-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+@media (max-width:700px){.acct-pick{grid-template-columns:1fr}}
+.apick{text-align:left;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--line);padding:12px 13px;transition:border-color .25s,background .25s}
+.apick:hover{border-color:#A9A199;border-top-color:#A9A199}
+.apick.on{border-color:var(--red);border-top-color:var(--red);background:var(--red-bg)}
+.apick b{display:block;font-size:14.5px;font-weight:600}
+.apick span{display:block;margin-top:4px;font-size:12.5px;color:var(--ink-3)}
+.kpirow{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:760px){.kpirow{grid-template-columns:repeat(5,1fr)}}
+.kpi1{background:var(--card);padding:13px 14px}
+.kpi1 b{display:block;font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;line-height:1.1}
+.kpi1 b.none{color:var(--ink-3)}
+.kpi1 b.down{color:var(--red)}
+.kpi1 span{display:block;margin-top:6px;font-size:12px;color:var(--ink-3);line-height:1.4}
+.kpi1 i{display:block;margin-top:4px;font-style:normal;font-size:11.5px;color:var(--ink-4)}
+.diag{margin-top:20px;display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:820px){.diag{grid-template-columns:1fr 1fr}}
+.dg{border:1px solid var(--line);border-left:3px solid var(--red);background:var(--card);padding:13px 14px}
+.dg b{display:block;font-size:14.5px;font-weight:600}
+.dg p{margin-top:7px;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.dg code{display:block;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);background:var(--red-bg);padding:6px 8px}
+.attr-h{margin:24px 0 12px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+.attr-h b{font-size:15px;font-weight:600}
+.attr-h span{font-size:12.5px;color:var(--ink-3)}
+.stores{overflow-x:auto;margin-top:18px}
+.stores table{min-width:640px}
+.stores td.pp{font-family:'IBM Plex Mono',monospace;text-align:right}
+.stores td.pp.neg{color:var(--red);font-weight:500}
+.stores td.dash{color:var(--ink-3)}
+.stores tr.agg td{border-top:1px solid var(--line);color:var(--ink-3)}
+
+/* ---------------- market comparison (06) ---------------- */
+.mkt{margin-top:18px;border:1px solid var(--line);background:var(--card);padding:15px 16px}
+.mkt-h{font-size:13px;color:var(--ink-3)}
+.mkt-h b{color:var(--ink);font-weight:600}
+.mkt-g{margin-top:12px;display:grid;gap:9px}
+.mkt-i{display:grid;grid-template-columns:120px 1fr 70px;gap:12px;align-items:center;font-size:13px}
+@media (max-width:600px){.mkt-i{grid-template-columns:96px 1fr 62px;gap:8px;font-size:12.5px}}
+.mbar{height:14px;background:#F0ECE5;position:relative}
+.mbar i{position:absolute;inset:0 auto 0 0;display:block;background:var(--red)}
+.mbar.mut i{background:var(--ink-2);opacity:.35}
+.mkt-i b{font-family:'IBM Plex Mono',monospace;text-align:right;font-weight:500}
+.mkt-n{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);font-size:13px;line-height:1.6;color:var(--ink-2)}
+.mkt-n b{color:var(--red);font-weight:600}
+
+.acct-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.acct-head b{font-size:17px;font-weight:600}
+.acct-head span{font-size:13px;color:var(--ink-3)}
+
+/* ---------------- missing-data notice (06) ---------------- */
+.notice{margin-top:18px;border:1px solid var(--red);border-left-width:3px;background:var(--red-bg);padding:12px 14px;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.notice b{font-weight:600;color:var(--red)}
+
+/* ---------------- cause analysis (06) ---------------- */
+.why-pick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.schip{border:1px solid var(--line);background:var(--card);padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-2);transition:border-color .25s,background .25s,color .25s}
+.schip:hover{border-color:#A9A199}
+.schip.on{border-color:var(--red);background:var(--red-bg);color:var(--red);font-weight:500}
+.schip .pp2{color:var(--ink-3);margin-left:7px}
+.schip.on .pp2{color:var(--red)}
+.why-list{display:grid;gap:10px;grid-template-columns:1fr}
+@media (min-width:820px){.why-list{grid-template-columns:repeat(2,1fr)}}
+.cause{display:block;width:100%;text-align:left;border:1px solid var(--line);border-left:3px solid var(--line);background:var(--card);padding:12px 13px;transition:border-color .25s,background .25s}
+.cause:hover:not([disabled]){border-color:#A9A199}
+.cause[aria-pressed="true"]{border-color:var(--red);border-left-color:var(--red);background:var(--red-bg)}
+.cause[disabled]{opacity:.6;cursor:not-allowed;border-style:dashed}
+.cause .top{display:flex;align-items:center;gap:9px}
+.cause .bx2{width:14px;height:14px;flex:0 0 auto;border:1px solid #8A837B;position:relative}
+.cause[aria-pressed="true"] .bx2{background:var(--red);border-color:var(--red)}
+.cause[aria-pressed="true"] .bx2::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(42deg)}
+.cause .src{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.cause[aria-pressed="true"] .src{color:var(--red)}
+.cause b{display:block;margin-top:8px;font-size:14px;font-weight:600}
+.cause p{margin-top:5px;font-size:12.5px;line-height:1.55;color:var(--ink-3)}
+.why-none{font-size:13px;color:var(--ink-3);padding:10px 0}
+.acts li .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);margin-right:7px}
+.acts .lvl{padding:14px 0 6px 0;border-bottom:0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);counter-increment:none}
+.acts .lvl::before{content:""}
+
+/* ---------------- store timeline (06) ---------------- */
+.tl{display:grid;gap:10px;grid-template-columns:1fr}
+@media (min-width:700px){.tl{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}}
+.tl-i{border:1px solid var(--line);border-top:3px solid var(--ink-3);background:var(--card);padding:11px 12px}
+.tl-i.pos{border-top-color:#2E6B3E}
+.tl-i.neg{border-top-color:var(--red)}
+.tl-i .mo{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-3)}
+.tl-i .who{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;margin-top:2px}
+.tl-i.pos .who{color:#2E6B3E}
+.tl-i.neg .who{color:var(--red)}
+.tl-i p{margin-top:7px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+
+/* ---------------- next actions (06) ---------------- */
+.acts{margin:0;padding:0;list-style:none;counter-reset:a}
+.acts li{counter-increment:a;position:relative;padding:11px 0 11px 34px;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.6}
+.acts li:last-child{border-bottom:0}
+.acts li::before{content:counter(a);position:absolute;left:0;top:11px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:var(--red)}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -668,6 +789,29 @@ Wholesale Operations</p>
             </div>
           </div>
         </div>
+
+        <div class="stage" data-r>
+          <div class="panel-card" id="artProbe">
+            <p class="sub-l"><i aria-hidden="true"></i><span>When an account changes their layout</span></p>
+            <div class="probe">
+              <div class="probe-col">
+                <div class="probe-h"><b>The file</b><span>Stays on the machine</span></div>
+                <div class="probe-r"><span>Boutique</span><span>AG 01</span></div>
+                <div class="probe-r"><span>Ref. article</span><span>LMN-N-RG-DI-4402</span></div>
+                <div class="probe-r"><span>Qté</span><span>3</span></div>
+                <div class="probe-r"><span>PU HT</span><span>1 240,00</span></div>
+              </div>
+              <div class="probe-col safe">
+                <div class="probe-h"><b>The structure report</b><span>Safe to send</span></div>
+                <div class="probe-r"><span>Boutique</span><span>enum, 12 values</span></div>
+                <div class="probe-r"><span>Ref. article</span><span>product-code shape</span></div>
+                <div class="probe-r"><span>Qté</span><span>integer 1–200</span></div>
+                <div class="probe-r"><span>PU HT</span><span>decimal, 2 places</span></div>
+              </div>
+            </div>
+            <p class="probe-note">A parser needs updating when a layout changes — but nobody needs to see the data to do it. The probe reports column names and the <em>shape</em> of each column. Not one cell value.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -686,7 +830,7 @@ Wholesale Operations</p>
           <div class="srail"><div class="srail-in" id="srail"></div></div>
           <div class="cols">
             <div class="col"><h5>Do</h5><p class="do" id="wDo"></p><p class="dosub" id="wSub"></p></div>
-            <div class="col"><h5>Check</h5><div id="wCk"></div></div>
+            <div class="col"><h5>Check</h5><div id="wCk"></div><p class="sync" id="syncMsg"></p></div>
             <div class="col send"><h5>Send — one click</h5><div id="wMail"></div></div>
           </div>
         </div>
@@ -704,28 +848,43 @@ Wholesale Operations</p>
       </div>
       <div class="stage" data-r>
         <div class="panel-card" id="artBoard">
-          <div class="kcards" id="kcards"></div>
-          <div class="board">
-            <table>
-              <thead><tr><th>Order</th><th>Account</th><th>Type</th><th>Status</th><th class="n">Days open</th><th>Next action</th><th></th></tr></thead>
-              <tbody id="boardBody"></tbody>
-            </table>
+          <div class="atabs" id="btabs" role="tablist" aria-label="Board view">
+            <button class="atab on" role="tab" aria-selected="true" data-b="0" type="button">Order board</button>
+            <button class="atab" role="tab" aria-selected="false" data-b="1" type="button">Back-order ledger</button>
           </div>
-          <div class="board-foot">
-            <button class="ghost" id="boardReset" type="button">Reset the board</button>
-            <p>The board and the steps are the same data. Ticking the last check of a step moves the order along here.</p>
+          <div id="paneOrders" style="margin-top:20px">
+            <div class="kcards" id="kcards"></div>
+            <div class="board">
+              <table>
+                <thead><tr><th>Order</th><th>Account</th><th>Type</th><th>Status</th><th class="n">Days open</th><th>Next action</th><th></th></tr></thead>
+                <tbody id="boardBody"></tbody>
+              </table>
+            </div>
+            <div class="board-foot">
+              <button class="ghost" id="boardReset" type="button">Reset the board</button>
+              <p>Sixteen statuses, the same ones the order file uses. Ticking the last check of a step in block 03 moves the matching order along here.</p>
+            </div>
+          </div>
+          <div id="paneBo" style="margin-top:20px;display:none">
+            <div class="board">
+              <table>
+                <thead><tr><th>SKU</th><th>Account</th><th class="n">Ordered</th><th class="n">Shipped</th><th class="n">Outstanding</th><th class="n">Carried</th></tr></thead>
+                <tbody id="boBody"></tbody>
+              </table>
+            </div>
+            <p class="bo-note">The order board is one row per order. This is one row per SKU — how many pieces an account is still owed. Anything carried three months or more is flagged. Clearing the ledger archives a monthly snapshot; it never deletes.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 05 · analytics -->
+    <!-- 05 · portfolio dashboard -->
     <div class="block">
       <div class="b-head" data-r>
         <span class="b-no">05</span>
         <div>
-          <h3 class="b-title">Read the numbers.</h3>
-          <p class="b-note">Sell-in is what we ship. Sell-out is what they sell. The gap shows who is holding stock.</p>
+          <h3 class="b-title">Read the whole portfolio.</h3>
+          <p class="b-note">The same order data, re-cut on demand — by collection, market, product line or against previous years.</p>
         </div>
       </div>
       <div class="stage" data-r>
@@ -735,6 +894,45 @@ Wholesale Operations</p>
             <div class="achart" id="achart"></div>
             <div class="aside"><b id="aH"></b><p id="aP"></p><div class="kpis" id="aK"></div></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 · account management -->
+    <div class="block">
+      <div class="b-head" data-r>
+        <span class="b-no">06</span>
+        <div>
+          <h3 class="b-title">Manage the account, not the order.</h3>
+          <p class="b-note">For every wholesaler: what the stock is doing, how it compares to its market, what happened in each store, and what to do next.</p>
+        </div>
+      </div>
+      <div class="stage" data-r>
+        <div class="panel-card" id="artAcct">
+          <div class="acct-pick" id="acctPick" role="tablist" aria-label="Account"></div>
+          <div id="acctNotice"></div>
+          <div class="kpirow" id="acctKpi"></div>
+          <div id="acctMkt"></div>
+          <div class="diag" id="acctDiag"></div>
+
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>What happened, and where</span></p>
+          <div class="tl" id="acctTl"></div>
+
+          <div class="attr-h"><b>Which store moved the number</b><span id="attrRange"></span></div>
+          <div class="achart" id="acctChart"></div>
+          <div class="stores">
+            <table>
+              <thead><tr><th>Store</th><th class="n">Sell-in</th><th class="n">Sell-out</th><th class="n">ST%</th><th class="n">Cover</th><th class="n">Contribution</th><th>What happened</th></tr></thead>
+              <tbody id="acctRows"></tbody>
+            </table>
+          </div>
+
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>Why — pick a store, then what you think caused it</span></p>
+          <div class="why-pick" id="whyStores" role="group" aria-label="Store"></div>
+          <div class="why-list" id="whyCauses"></div>
+
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>What I would do next</span></p>
+          <ol class="acts" id="acctActs"></ol>
         </div>
       </div>
     </div>
@@ -1104,52 +1302,85 @@ function rStep(){
 }
 typesEl.addEventListener('click',function(e){
   var b=e.target.closest('.type'); if(!b) return;
-  cw=+b.getAttribute('data-w'); cs=0; rTypes(); rRail(); rStep();
+  cw=+b.getAttribute('data-w'); cs=0; rTypes(); rRail(); rStep(); q('#syncMsg').classList.remove('on');
 });
 srail.addEventListener('click',function(e){
   var b=e.target.closest('.step'); if(!b) return;
-  cs=+b.getAttribute('data-s'); rRail(); rStep();
+  cs=+b.getAttribute('data-s'); rRail(); rStep(); syncStatus();
 });
+/* ticking every check of a step moves the matching order on the board (04) */
+var STEP_STATUS=[
+ [1,5,7,10,13,15],
+ [1,8,9,10,5,7,11,13,12,15],
+ [3,5,7,13,12,14],
+ [1,2,6,15]
+];
+function syncStatus(){
+  var msg=q('#syncMsg');
+  var all=st[cw][cs].length && st[cw][cs].every(function(v){return v;});
+  if(!all){ msg.classList.remove('on'); return; }
+  var target=null;
+  for(var i=0;i<ORD.length;i++){ if(ORD[i].type===WF[cw].n && ORD[i].st<15){ target=ORD[i]; break; } }
+  if(!target){ msg.classList.remove('on'); return; }
+  var next=STEP_STATUS[cw][cs];
+  if(next!==undefined && next>target.st){ target.st=next; rBoard(); }
+  msg.innerHTML='Step complete — <b>'+esc(target.ref)+'</b> moved to <b>'+esc(STATUS[target.st])+'</b> on the order board.';
+  msg.classList.add('on');
+}
 wCk.addEventListener('click',function(e){
   var b=e.target.closest('.ck'); if(!b) return;
   var i=+b.getAttribute('data-c');
   st[cw][cs][i]=!st[cw][cs][i];
-  b.setAttribute('aria-pressed',String(st[cw][cs][i])); rRail();
+  b.setAttribute('aria-pressed',String(st[cw][cs][i])); rRail(); syncStatus();
 });
 rTypes(); rRail(); rStep();
 
-/* ================= 04 · order board ================= */
-var STATUS=['Received','Order created','Plan sent','Invoiced','Shipped','Closed'];
-var NEXT=['Create the order','Send the shipment plan','Request the invoice','Forward the documents','File the proof of delivery','—'];
+/* ================= 04 · order board + back-order ledger ================= */
+var STATUS=['ROA sent','Availability feedback','Order placed','Availability confirmed',
+ 'Back-order file','Sales order created','Shipment plan created','Shipment plan sent',
+ 'Proforma sent','Bank transfer sent','Payment confirmed','Credit note issued',
+ 'Shipped','Shipment ticket sent','Invoice generated','Invoice sent'];
+var NEXT=['Chase the availability answer','Place the order','Confirm availability','Open the back-order file',
+ 'Create the sales order','Build the shipment plan','Send the plan to the warehouse','Request the invoice',
+ 'Send the proforma to the account','Send the transfer advice','Issue the credit note','Release for shipping',
+ 'Send the shipment ticket','Generate the invoice','Send the invoice','—'];
 var SEED=[
- {ref:'PO 4471',acct:'Atelier Verrier',type:'Standard',st:2,days:6},
- {ref:'PO 5518',acct:'Casa Aurelio',type:'Prepayment',st:1,days:11},
- {ref:'CN 118',acct:'Meridian & Co',type:'Consignment',st:3,days:4},
- {ref:'PO 4489',acct:'Nordwerk',type:'Standard',st:0,days:2},
- {ref:'RP W12',acct:'Westfield Jewelers',type:'Replenishment',st:4,days:9},
- {ref:'PO 5602',acct:'Alpine Maison',type:'Prepayment',st:2,days:14},
- {ref:'PO 4503',acct:'Atelier Verrier',type:'Standard',st:5,days:21},
- {ref:'CN 121',acct:'Meridian & Co',type:'Consignment',st:1,days:3}
+ {ref:'PO 4471',acct:'Atelier Verrier',type:'Standard',st:6,days:6},
+ {ref:'PO 5518',acct:'Casa Aurelio',type:'Prepayment',st:8,days:11},
+ {ref:'CN 118',acct:'Meridian & Co',type:'Consignment',st:7,days:4},
+ {ref:'PO 4489',acct:'Nordwerk',type:'Standard',st:1,days:2},
+ {ref:'RP W12',acct:'Westfield Jewelers',type:'Replenishment',st:2,days:9},
+ {ref:'PO 5602',acct:'Alpine Maison',type:'Prepayment',st:10,days:14},
+ {ref:'PO 4503',acct:'Atelier Verrier',type:'Standard',st:15,days:21},
+ {ref:'CN 121',acct:'Meridian & Co',type:'Consignment',st:5,days:3}
 ];
-var ORD=[],boardBody=q('#boardBody'),kcards=q('#kcards');
+var BO=[
+ ['LMN-N-RG-DI-4402','Atelier Verrier',12,6,6,1],
+ ['LMN-R-PT-DI-7731','Meridian & Co',10,4,6,3],
+ ['LMN-B-WG-DI-2218','Nordwerk',24,20,4,1],
+ ['LMN-P-WG-JE-3097','Alpine Maison',8,0,8,4],
+ ['LMN-G-RG-0522','Westfield Jewelers',15,12,3,2]
+];
+var ORD=[],boardBody=q('#boardBody'),kcards=q('#kcards'),boBody=q('#boBody');
 function seedBoard(){ ORD=SEED.map(function(o){ return {ref:o.ref,acct:o.acct,type:o.type,st:o.st,days:o.days}; }); }
-function ageing(o){ return o.days>8 && o.st<4; }
+function ageing(o){ return o.days>8 && o.st<12; }
+function phase(i){ return i>=15?'done':(i>=5?'mid':''); }
 function rBoard(){
   boardBody.innerHTML=ORD.map(function(o,i){
-    var done=o.st>=5;
+    var done=o.st>=15;
     return '<tr'+(done?' class="closed"':'')+'>'+
       '<td class="sku">'+esc(o.ref)+'</td>'+
       '<td>'+esc(o.acct)+'</td>'+
       '<td>'+esc(o.type)+'</td>'+
-      '<td><span class="pill p'+o.st+'">'+esc(STATUS[o.st])+'</span></td>'+
+      '<td><span class="pill '+phase(o.st)+'">'+esc(STATUS[o.st])+'</span></td>'+
       '<td class="n"><span class="days'+(ageing(o)?' age':'')+'">'+o.days+'</span>'+
         (ageing(o)?'<span class="age-tag">ageing</span>':'')+'</td>'+
       '<td class="next">'+esc(NEXT[o.st])+'</td>'+
       '<td><button class="adv" data-i="'+i+'"'+(done?' disabled':'')+'>'+(done?'Closed':'Advance →')+'</button></td>'+
     '</tr>';
   }).join('');
-  var open=ORD.filter(function(o){return o.st<5;}).length;
-  var inv=ORD.filter(function(o){return o.st<3;}).length;
+  var open=ORD.filter(function(o){return o.st<15;}).length;
+  var inv=ORD.filter(function(o){return o.st<14;}).length;
   var age=ORD.filter(ageing).length;
   var avg=Math.round(ORD.reduce(function(a,o){return a+o.days;},0)/ORD.length*10)/10;
   kcards.innerHTML=
@@ -1158,14 +1389,28 @@ function rBoard(){
     '<div class="kc'+(age?' alert':'')+'"><b>'+age+'</b><span>Ageing past the threshold</span></div>'+
     '<div class="kc"><b>'+avg+'</b><span>Average days open</span></div>';
 }
+function rBo(){
+  boBody.innerHTML=BO.map(function(r){
+    return '<tr><td class="sku">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td>'+
+      '<td class="n">'+r[2]+'</td><td class="n">'+r[3]+'</td><td class="n">'+r[4]+'</td>'+
+      '<td class="n"><span class="carried'+(r[5]>=3?' long':'')+'">'+r[5]+' mo</span></td></tr>';
+  }).join('');
+}
 boardBody.addEventListener('click',function(e){
   var b=e.target.closest('.adv'); if(!b||b.disabled) return;
   var o=ORD[+b.getAttribute('data-i')];
-  if(o.st<5){ o.st++; if(o.st<5) o.days+=1; }
+  if(o.st<15){ o.st++; if(o.st<15) o.days+=1; }
   rBoard();
 });
-q('#boardReset').addEventListener('click',function(){ seedBoard(); rBoard(); });
-seedBoard(); rBoard();
+q('#boardReset').addEventListener('click',function(){ seedBoard(); rBoard(); q('#syncMsg').classList.remove('on'); });
+q('#btabs').addEventListener('click',function(e){
+  var b=e.target.closest('.atab'); if(!b) return;
+  var i=+b.getAttribute('data-b');
+  qa('.atab',this).forEach(function(t,j){ t.classList.toggle('on',j===i); t.setAttribute('aria-selected',String(j===i)); });
+  q('#paneOrders').style.display=i===0?'block':'none';
+  q('#paneBo').style.display=i===1?'block':'none';
+});
+seedBoard(); rBoard(); rBo();
 
 /* ================= 05 · analytics ================= */
 var V=[
@@ -1270,6 +1515,192 @@ atabs.addEventListener('click',function(e){
 rAn();
 var arz; window.addEventListener('resize',function(){clearTimeout(arz);arz=setTimeout(rAn,220);});
 
+/* ================= 05b · Account 360 ================= */
+/* rows: [store, sell-in, sell-out, ST% or null, months of cover or null,
+          contribution in points to the year-on-year change, one-line read] */
+var ACCT=[
+{id:'mer',name:'Meridian & Co',market:'Canada · 4 stores',range:'Jan–Aug vs the same months last year',
+ kpi:{si:1170,so:677,st:39,cov:5.8,yoy:-18.0},
+ mkt:{name:'Canada',peers:4,yoy:-6.0,st:47},
+ mktRead:'Twelve of the eighteen points are the account\u2019s own, not the market\u2019s.',
+ diag:[
+  {t:'Stock is building, not selling.',c:'rule: ST% < 45% and cover > 5 months',
+   d:'39% sell-through against 47% for the market, with 5.8 months of cover at the current rate.'},
+  {t:'One store carries most of it.',c:'rule: one store > 50% of the total change',
+   d:'Ashgrove alone is 11.4 of the 18.0 point fall, and Belvedere is up. A store problem, not an account problem.'}],
+ tl:[
+  ['Mar','CW 03','Senior sales associate left','neg'],
+  ['Apr','AG 01','Renovation — six weeks closed','neg'],
+  ['May','BV 02','Private client evening','pos']],
+ rows:[
+  ['AG 01 Ashgrove',420,198,32,7.2,-11.4,'Closed six weeks for renovation, but shipments kept arriving',[
+    {id:'stock',k:'From the data',l:'Stock outran demand',e:'7.2 months of cover against 3.4 for the account.',
+     a:['Hold the September allocation until cover falls below five months.','Move slow lines to a store that is short.']},
+    {id:'closed',k:'From the store log',l:'Six weeks closed for renovation',e:'April to mid-May, recorded before the season started.',
+     a:['Re-baseline Ashgrove on the months it actually traded.']}]],
+  ['CW 03 Crestwood',310,161,36,6.4,-7.8,'Lost its senior sales associate in March',[
+    {id:'staff',k:'From the store log',l:'Lost its senior seller',e:'March, not replaced as of August.',
+     a:['Repeat the Belvedere evening here before the November peak.']},
+    {id:'stock',k:'From the data',l:'Stock is building',e:'6.4 months of cover at 36% sell-through.',
+     a:['Pause replenishment for one cycle.']}]],
+  ['BV 02 Belvedere',260,214,58,2.1,5.2,'Private client evening in May sold forty pieces in a week',[
+    {id:'event',k:'From the store log',l:'The May evening worked',e:'Forty pieces in the week that followed.',
+     a:['Copy the format to Crestwood and Dunmore.']}]],
+  ['DM 04 Dunmore',180,104,null,null,-4.0,'No stock file has ever arrived from this store',[
+    {id:'stock',k:'Needs the stock file',l:'Stock explanation cannot be tested',e:'No stock snapshot from this store, so sell-through shows — rather than 0%.',blocked:true,a:[]},
+    {id:'noevent',k:'From the store log',l:'No event this year',e:'A trunk show ran in the same period last year.',
+     a:['Put Dunmore on the Q4 event calendar.']}]]],
+ acts:[
+  'Chase the Dunmore stock file — a quarter of this account cannot be read without it.']}
+];
+var acctPick=q('#acctPick'),acctKpi=q('#acctKpi'),acctMkt=q('#acctMkt'),acctDiag=q('#acctDiag'),
+    acctTl=q('#acctTl'),acctChart=q('#acctChart'),acctRows=q('#acctRows'),
+    acctActs=q('#acctActs'),attrRange=q('#attrRange'),acctNotice=q('#acctNotice'),
+    whyStores=q('#whyStores'),whyCauses=q('#whyCauses'),ac=0,ws=0,picked={};
+function num(v,suffix,title){
+  if(v===null||v===undefined) return '<b class="none" title="'+esc(title||'Not computable')+'">—</b>';
+  return '<b'+(v<0?' class="down"':'')+'>'+v+(suffix||'')+'</b>';
+}
+function signed(v){ return (v>0?'+':'')+v.toFixed(1); }
+function attrBars(rows){
+  var W=nar()?440:640,gut=nar()?124:180,fs=nar()?13:12.5,rh=28,H=rows.length*rh+12;
+  var mx=0; rows.forEach(function(r){ mx=Math.max(mx,Math.abs(r[5])); });
+  var half=(W-gut-56)/2, zero=gut+half, s='';
+  s+='<line x1="'+zero+'" y1="3" x2="'+zero+'" y2="'+(H-6)+'" stroke="#1A1718" stroke-opacity=".25"/>';
+  rows.forEach(function(r,i){
+    var y=i*rh+7,v=r[5],w=Math.abs(v)/mx*half*0.92;
+    var x=v<0?zero-w:zero;
+    s+='<text x="0" y="'+(y+12)+'" fill="#403A38" font-size="'+fs+'">'+esc(r[0])+'</text>';
+    s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="12" fill="'+(v<0?'#AC202D':'#403A38')+'" opacity="'+(v<0?1:.55)+'"'+grow(i*70)+'/>';
+    s+='<text x="'+(W-2)+'" y="'+(y+11)+'" text-anchor="end" fill="'+(v<0?'#AC202D':'#403A38')+'" font-size="'+fs+'">'+signed(v)+'</text>';
+  });
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="contribution of each store to the change">'+s+'</svg>';
+}
+function rAcct(){
+  var a=ACCT[ac];
+  acctPick.innerHTML='<div class="acct-head"><b>'+esc(a.name)+'</b><span>'+
+    esc(a.market)+' · '+esc(a.range)+'</span></div>';
+
+  var gaps=a.rows.filter(function(r){ return r[3]===null; });
+  acctNotice.innerHTML = gaps.length
+    ? '<div class="notice"><b>'+esc(gaps[0][0])+' sends no stock file.</b> '+
+      'Its sell-through shows — rather than 0%, because a missing import is not the same as a store that has stopped selling. '+
+      'Any cause needing stock data is marked below and cannot be tested.</div>'
+    : '';
+
+  acctKpi.innerHTML=
+    '<div class="kpi1">'+num(a.kpi.si)+'<span>Sell-in, pieces</span></div>'+
+    '<div class="kpi1">'+num(a.kpi.so)+'<span>Sell-out, pieces</span></div>'+
+    '<div class="kpi1">'+num(a.kpi.st,'%','No stock file imported')+'<span>Sell-through</span>'+
+      (a.kpi.st===null?'<i>stock not imported</i>':'<i>market '+a.mkt.st+'%</i>')+'</div>'+
+    '<div class="kpi1">'+num(a.kpi.cov,' mo','No stock file imported')+'<span>Months of cover</span></div>'+
+    '<div class="kpi1"><b class="'+(a.kpi.yoy<0?'down':'')+'">'+signed(a.kpi.yoy)+'%</b>'+
+      '<span>Year on year</span><i>'+esc(a.range)+'</i></div>';
+
+  /* market comparison */
+  var mmax=Math.max(Math.abs(a.kpi.yoy),Math.abs(a.mkt.yoy))||1;
+  acctMkt.innerHTML='<div class="mkt">'+
+    '<p class="mkt-h">Against its market — <b>'+esc(a.mkt.name)+'</b>, '+a.mkt.peers+' accounts</p>'+
+    '<div class="mkt-g">'+
+      '<div class="mkt-i"><span>This account</span><div class="mbar"><i style="width:'+
+        (Math.abs(a.kpi.yoy)/mmax*100)+'%"></i></div><b>'+signed(a.kpi.yoy)+'%</b></div>'+
+      '<div class="mkt-i"><span>'+esc(a.mkt.name)+' average</span><div class="mbar mut"><i style="width:'+
+        (Math.abs(a.mkt.yoy)/mmax*100)+'%"></i></div><b>'+signed(a.mkt.yoy)+'%</b></div>'+
+    '</div>'+
+    '<p class="mkt-n"><b>'+Math.abs(a.kpi.yoy-a.mkt.yoy).toFixed(1)+' points</b> of difference. '+esc(a.mktRead)+'</p>'+
+  '</div>';
+
+  acctDiag.innerHTML=a.diag.map(function(d){
+    return '<div class="dg"><b>'+esc(d.t)+'</b><p>'+esc(d.d)+'</p><code>'+esc(d.c)+'</code></div>';
+  }).join('');
+
+  acctTl.innerHTML=a.tl.map(function(t){
+    return '<div class="tl-i '+esc(t[3,[
+   {id:'refit',k:'From the store log',l:'Refit reduced the selling space',e:'Two weeks at roughly half the floor in April.',
+    a:['Re-baseline Milano on the weeks it traded at full space.',[
+   {id:'comp',k:'From the market',l:'A competitor opened in the same gallery',e:'February, directly comparable price point.',
+    a:['Review the Roma assortment against the new neighbour before the next order.','Ask for a footfall read from the gallery.']},
+   {id:'feed',k:'From the store log',l:'The sell-out file stopped arriving',e:'Nothing received since June.',
+    a:['Get the sell-out and stock files restarted before judging this account.']},
+   {id:'stock',k:'Needs the stock file',l:'Stock explanation cannot be tested',e:'No stock snapshot has been imported for this account.',blocked:true,
+    a:[]}]]},
+   {id:'stock',k:'Needs the stock file',l:'Stock explanation cannot be tested',e:'No stock snapshot has been imported for this account.',blocked:true,
+    a:[]}]])+'"><span class="mo">'+esc(t[0])+'</span>'+
+      '<span class="who">'+esc(t[1])+'</span><p>'+esc(t[2])+'</p></div>';
+  }).join('');
+
+  attrRange.textContent='Points of the '+signed(a.kpi.yoy)+'% change, by store';
+  acctChart.innerHTML=attrBars(a.rows);
+
+  acctRows.innerHTML=a.rows.map(function(r){
+    var agg=/other stores/.test(r[0]);
+    return '<tr'+(agg?' class="agg"':'')+'><td>'+esc(r[0])+'</td>'+
+      '<td class="n">'+r[1]+'</td><td class="n">'+r[2]+'</td>'+
+      (r[3]===null?'<td class="n dash">—</td>':'<td class="n">'+r[3]+'%</td>')+
+      (r[4]===null?'<td class="n dash">—</td>':'<td class="n">'+r[4]+' mo</td>')+
+      '<td class="pp'+(r[5]<0?' neg':'')+'">'+signed(r[5])+'</td>'+
+      '<td class="next">'+esc(r[6])+'</td></tr>';
+  }).join('');
+
+  rWhy();
+
+  if(reduced) return;
+  requestAnimationFrame(function(){ qa('.gb',acctChart).forEach(function(r){r.style.transform='scaleX(1)';}); });
+}
+/* cause analysis: pick a store, tick the causes you believe, actions follow */
+function storeRows(){ return ACCT[ac].rows; }
+function defaultStore(){
+  var rows=storeRows(),idx=0,worst=0;
+  rows.forEach(function(r,i){ if(r[5]<worst){ worst=r[5]; idx=i; } });
+  return idx;
+}
+function causeKey(i,id){ return ac+':'+i+':'+id; }
+function rWhy(){
+  var rows=storeRows(),r=rows[ws]||rows[0];
+  whyStores.innerHTML=rows.map(function(x,i){
+    return '<button class="schip'+(i===ws?' on':'')+'" data-s="'+i+'" type="button" aria-pressed="'+(i===ws)+'">'+
+      esc(x[0])+'<span class="pp2">'+signed(x[5])+'</span></button>';
+  }).join('');
+  var cs=r[7]||[];
+  whyCauses.innerHTML = cs.length ? cs.map(function(c){
+    var on=!!picked[causeKey(ws,c.id)];
+    return '<button class="cause" type="button" data-c="'+esc(c.id)+'" aria-pressed="'+on+'"'+(c.blocked?' disabled':'')+'>'+
+      '<span class="top"><span class="bx2"></span><span class="src">'+esc(c.k)+'</span></span>'+
+      '<b>'+esc(c.l)+'</b><p>'+esc(c.e)+'</p></button>';
+  }).join('') : '<p class="why-none">No candidate causes recorded for this store.</p>';
+  rActs();
+}
+function rActs(){
+  var a=ACCT[ac],out='';
+  storeRows().forEach(function(r,i){
+    (r[7]||[]).forEach(function(c){
+      if(!picked[causeKey(i,c.id)]) return;
+      c.a.forEach(function(x){
+        out+='<li><span class="tag">'+esc(r[0].split(' ').slice(0,2).join(' '))+'</span>'+esc(x)+'</li>';
+      });
+    });
+  });
+  acctActs.innerHTML = (out?'<li class="lvl">From the causes you picked</li>'+out:'') +
+    '<li class="lvl">Account level</li>' +
+    a.acts.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
+}
+whyStores.addEventListener('click',function(e){
+  var b=e.target.closest('.schip'); if(!b) return;
+  ws=+b.getAttribute('data-s'); rWhy();
+});
+whyCauses.addEventListener('click',function(e){
+  var b=e.target.closest('.cause'); if(!b||b.disabled) return;
+  var k=causeKey(ws,b.getAttribute('data-c'));
+  picked[k]=!picked[k];
+  b.setAttribute('aria-pressed',String(picked[k]));
+  rActs();
+});
+
+ws=defaultStore();
+(function(){ var f=(storeRows()[ws][7]||[])[0]; if(f && !f.blocked) picked[causeKey(ws,f.id)]=true; })();
+rAcct();
+var arz2; window.addEventListener('resize',function(){clearTimeout(arz2);arz2=setTimeout(rAcct,240);});
+
 /* ================= sticky CTA ================= */
 var sticky=q('#sticky'),act1=q('#act1'),ctaSec=q('#cta'),ctaBtn=q('#ctaBtn');
 var pastAct1=false,atCta=false;
@@ -1287,16 +1718,18 @@ var ov=q('#ov'),ovStage=q('#ovStage'),ovCap=q('#ovCap'),ovBar=q('#ovBar'),ovPP=q
 var homes=[],opener=null,cur=0,playing=false,timer=null,t0=0,remain=0,segs=[];
 
 var SCENES=[
-  {n:'01',txt:'Pick the order type',ms:3000,node:function(){return q('#artTypes');},
+  {n:'01',txt:'Pick the order type',ms:2500,node:function(){return q('#artTypes');},
    run:function(){ cw=0;cs=0;rTypes();rRail();rStep(); }},
-  {n:'02',txt:'Read the incoming file',ms:5500,node:function(){return q('#artFile');},
-   run:function(){ resetA(); playA(false); setTimeout(playB,1600); }},
-  {n:'03',txt:'Walk the steps, send the email',ms:4000,node:function(){return q('#artFlow');},
+  {n:'02',txt:'Read the incoming file',ms:5000,node:function(){return q('#artFile');},
+   run:function(){ resetA(); playA(false); setTimeout(playB,1500); }},
+  {n:'03',txt:'Walk the steps, send the email',ms:3500,node:function(){return q('#artFlow');},
    run:function(){ cs=2;rRail();rStep(); }},
-  {n:'04',txt:'Track the order',ms:3500,node:function(){return q('#artBoard');},
-   run:function(){ seedBoard(); rBoard(); setTimeout(function(){ if(ORD[0]){ORD[0].st++;rBoard();} },1200); }},
-  {n:'05',txt:'Read the numbers',ms:3500,node:function(){return q('#artChart');},
-   run:function(){ ai=1;rAn(); }}
+  {n:'04',txt:'Track the order',ms:3000,node:function(){return q('#artBoard');},
+   run:function(){ seedBoard(); rBoard(); setTimeout(function(){ if(ORD[0]){ORD[0].st+=1;rBoard();} },1100); }},
+  {n:'05',txt:'Read the portfolio',ms:2500,node:function(){return q('#artChart');},
+   run:function(){ ai=1;rAn(); }},
+  {n:'06',txt:'Manage the account, store by store',ms:5500,node:function(){return q('#artAcct');},
+   run:function(){ ws=defaultStore(); rAcct(); }}
 ];
 
 (function buildSegs(){
