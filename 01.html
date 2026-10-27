@@ -33,7 +33,7 @@
 html{scroll-behavior:smooth;scroll-padding-bottom:96px}
 body{
   margin:0;background:var(--bg);color:var(--ink);
-  font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
   font-weight:400;font-size:16px;line-height:1.65;
   -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
 }
@@ -69,8 +69,22 @@ svg{max-width:100%}
 .drop:hover .cue,.btn-sp:hover{background:var(--red);border-color:var(--red)}
 
 /* ---------------- hero ---------------- */
+.langbar{position:fixed;top:0;right:0;z-index:70;display:flex;gap:1px;background:var(--line);
+  border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.langbar button{background:var(--bg);border:0;padding:8px 13px;font-size:12.5px;font-weight:500;color:var(--ink-3);
+  transition:background .25s ease,color .25s ease}
+.langbar button:hover{color:var(--ink)}
+.langbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:520px){.langbar button{padding:7px 10px;font-size:12px}}
 .hero-top{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,48px);align-items:start}
-@media (min-width:900px){.hero-top{grid-template-columns:minmax(0,1fr) 236px}}
+@media (min-width:900px){.langbar{position:fixed;top:0;right:0;z-index:70;display:flex;gap:1px;background:var(--line);
+  border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.langbar button{background:var(--bg);border:0;padding:8px 13px;font-size:12.5px;font-weight:500;color:var(--ink-3);
+  transition:background .25s ease,color .25s ease}
+.langbar button:hover{color:var(--ink)}
+.langbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:520px){.langbar button{padding:7px 10px;font-size:12px}}
+.hero-top{grid-template-columns:minmax(0,1fr) 236px}}
 .card-me{border-top:2px solid var(--ink);padding-top:16px}
 @media (min-width:900px){.card-me{justify-self:end;width:100%}}
 .me-role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
@@ -88,7 +102,7 @@ svg{max-width:100%}
 .me-mail{display:block;margin-top:12px;font-size:12.5px;color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;width:fit-content}
 .me-mail:hover{color:var(--red);border-color:var(--red)}
 
-.hero{padding-block:clamp(64px,10vh,110px) clamp(44px,6vw,72px)}
+.hero{padding-block:clamp(74px,10vh,118px) clamp(44px,6vw,72px)}
 .mark{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
 .h1{margin-top:18px;font-size:clamp(34px,6.4vw,68px);line-height:1.08;font-weight:600;letter-spacing:-.01em}
 .h1 span{color:var(--red)}
@@ -614,6 +628,12 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
 </head>
 <body>
 
+<nav class="langbar" aria-label="Language">
+  <button type="button" data-lang="en" aria-pressed="true">EN</button>
+  <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+  <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+</nav>
+
 <!-- ===================== HERO ===================== -->
 <header class="section hero">
   <div class="wrap">
@@ -621,14 +641,14 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
       <div class="hero-lede">
         <p class="mark">Maison Lumen — Wholesale Operations</p>
         <h1 class="h1">Wholesale<br><span>Order Copilot</span></h1>
-        <p class="hero-sub">Pick the order type, drop in whatever file arrives, and every step, document and email is prepared for you.</p>
-        <p class="hero-tag">Runs offline · nothing uploaded</p>
+        <p data-t="hero.sub" class="hero-sub">Pick the order type, drop in whatever file arrives, and every step, document and email is prepared for you.</p>
+        <p data-t="hero.tag" class="hero-tag">Runs offline · nothing uploaded</p>
       </div>
 
       <aside class="card-me">
-        <p class="me-role">Designed &amp; built by</p>
+        <p data-t="me.role" class="me-role">Designed &amp; built by</p>
         <p class="me-name">Liyi&nbsp;Gao</p>
-        <p class="me-where">Wholesale operations · Paris</p>
+        <p data-t="me.where" class="me-where">Wholesale operations · Paris</p>
         <a class="me-link" href="https://www.linkedin.com/in/liyi-gao" target="_blank" rel="noopener">
           LinkedIn <span class="arw" aria-hidden="true">→</span>
         </a>
@@ -642,70 +662,70 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
         <div class="shot-bar">
           <i></i><i></i><i></i>
           <span>Wholesale Order Copilot</span>
-          <em>running locally · no sign-in</em>
+          <em data-t="shell.local">running locally · no sign-in</em>
         </div>
         <div class="shot-body">
           <aside class="shot-side">
             <p class="wm">MAISON <span>LUMEN</span></p>
-            <p class="sub">Copilot</p>
+            <p data-t="shell.copilot" class="sub">Copilot</p>
             <hr>
-            <p class="lbl">Choose a module</p>
+            <p data-t="shell.choose" class="lbl">Choose a module</p>
             <nav class="shot-nav">
-              <b class="on">Order management</b>
-              <b>Sales analysis</b>
-              <b>Account management</b>
+              <b class="on" data-t="mod.1">Order management</b>
+              <b data-t="mod.2">Sales analysis</b>
+              <b data-t="mod.3">Account management</b>
             </nav>
             <hr>
-            <p class="env"><b>Environment</b>Local folder · data<br>Last updated 12:40</p>
+            <p class="env"><b data-t="shell.env">Environment</b><span data-t="shell.envv">Local folder · data<br>Last updated 12:40</span></p>
           </aside>
           <div class="shot-main">
             <p class="mk">Maison <span>Lumen</span></p>
             <h3>International Wholesale Copilot</h3>
-            <p class="kick">Order · Sales · Client</p>
+            <p data-t="shell.kick" class="kick">Order · Sales · Client</p>
             <div class="dash" aria-hidden="true"></div>
-            <p class="shot-hint">Click a module to open it · close it and try the next one</p>
+            <p data-t="shot.hint" class="shot-hint">Click a module to open it · close it and try the next one</p>
             <div class="shot-cards" id="shotCards">
               <a class="sc" href="#mod-order" data-from="0" data-to="3">
                 <span class="sc-in">
-                  <span class="no">I</span><b>Order management</b>
+                  <span class="no">I</span><b data-t="mod.1">Order management</b>
                   <span class="en">Order management</span>
-                  <span class="tx">End to end, from enquiry to shipment plan. Every step says what to do and who to write to.</span>
+                  <span class="tx" data-t="card.tx1">End to end, from enquiry to shipment plan. Every step says what to do and who to write to.</span>
                 </span>
                 <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
               </a>
               <a class="sc" href="#mod-sales" data-from="4" data-to="4">
                 <span class="sc-in">
-                  <span class="no">II</span><b>Sales analysis</b>
+                  <span class="no">II</span><b data-t="mod.2">Sales analysis</b>
                   <span class="en">Annual report dashboard</span>
-                  <span class="tx">One dataset across time, market, collection and price band. The angle changes the answer.</span>
+                  <span class="tx" data-t="card.tx2">One dataset across time, market, collection and price band. The angle changes the answer.</span>
                 </span>
                 <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
               </a>
               <a class="sc" href="#mod-account" data-from="5" data-to="5">
                 <span class="sc-in">
-                  <span class="no">III</span><b>Account management</b>
+                  <span class="no">III</span><b data-t="mod.3">Account management</b>
                   <span class="en">Account management</span>
-                  <span class="tx">Where the stock sits, which store moved the number, and why it stopped there.</span>
+                  <span class="tx" data-t="card.tx3">Where the stock sits, which store moved the number, and why it stopped there.</span>
                 </span>
                 <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
               </a>
             </div>
             <div class="shot-stats">
-              <div><span>Orders in progress</span><b>7</b></div>
-              <div><span>Closed</span><b>41</b></div>
-              <div><span>Ageing past threshold</span><b>3</b></div>
-              <div><span>Sell-in records</span><b>1,940</b></div>
+              <div><span data-t="shell.s1">Orders in progress</span><b>7</b></div>
+              <div><span data-t="shell.s2">Closed</span><b>41</b></div>
+              <div><span data-t="shell.s3">Ageing past threshold</span><b>3</b></div>
+              <div><span data-t="shell.s4">Sell-in records</span><b>1,940</b></div>
             </div>
           </div>
         </div>
       </div>
-      <figcaption class="shot-cap"><b>The tool itself.</b> Rebuilt here with a fictional maison and fictional figures — the layout, the three modules and the flow are the real ones. Each module jumps to its section below.</figcaption>
+      <figcaption class="shot-cap"><span data-t="shot.cap"><b>The tool itself.</b> Rebuilt here with a fictional maison and fictional figures — the layout, the three modules and the flow are the real ones.</span> Each module jumps to its section below.</figcaption>
     </figure>
 
     <div class="figs" data-r>
-      <div class="fig"><b>20+</b><span>Wholesale accounts</span></div>
-      <div class="fig"><b>4</b><span>Order workflows</span></div>
-      <div class="fig"><b>1 → 60+</b><span>Lines from one PDF</span></div>
+      <div class="fig"><b>20+</b><span data-t="fig.1">Wholesale accounts</span></div>
+      <div class="fig"><b>4</b><span data-t="fig.2">Order workflows</span></div>
+      <div class="fig"><b>1 → 60+</b><span data-t="fig.3">Lines from one PDF</span></div>
     </div>
   </div>
 </header>
@@ -715,11 +735,11 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
   <div class="wrap">
     <div class="act-head" data-r>
       <div>
-        <p class="eyebrow">The problem</p>
-        <h2 class="h2">Every order arrives different.</h2>
+        <p class="eyebrow" data-t="problem.eyebrow">The problem</p>
+        <h2 class="h2" data-t="problem.h2">Every order arrives different.</h2>
         <hr class="rule">
       </div>
-      <p class="lede">Different headers, different order, sometimes no price column. One is a matrix. The warehouse accepts one format only.</p>
+      <p data-t="problem.lede" class="lede">Different headers, different order, sometimes no price column. One is a matrix. The warehouse accepts one format only.</p>
     </div>
 
     <div class="problem" data-r>
@@ -732,7 +752,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             <div class="dr bd"><span class="s"></span><span></span><span class="s"></span><span></span></div>
             <div class="dr bd"><span></span><span></span><span class="s"></span><span class="s"></span></div>
           </div>
-          <p class="doc-n">French headers · store code inside the description</p>
+          <p data-t="doc.n1" class="doc-n">French headers · store code inside the description</p>
         </article>
         <article class="doc">
           <div class="doc-h"><b>Nordwerk — order 08-B</b><span>XLSX</span></div>
@@ -742,7 +762,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             <div class="dr c3 bd"><span class="s"></span><span class="s"></span><span></span></div>
             <div class="dr c3 bd"><span></span><span class="s"></span><span class="x"></span></div>
           </div>
-          <p class="doc-n"><b>No price column</b> — prices sit in a rate card</p>
+          <p data-t="doc.n2" class="doc-n"><b>No price column</b> — prices sit in a rate card</p>
         </article>
         <article class="doc">
           <div class="doc-h"><b>Meridian &amp; Co — spring drop</b><span>PDF</span></div>
@@ -752,18 +772,18 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             <div class="dr bd"><span class="s"></span><span class="x"></span><span class="s"></span><span class="x"></span></div>
             <div class="dr bd"><span></span><span class="s"></span><span class="s"></span><span class="x"></span></div>
           </div>
-          <p class="doc-n"><b>A matrix</b> — twelve stores across the columns</p>
+          <p data-t="doc.n3" class="doc-n"><b>A matrix</b> — twelve stores across the columns</p>
         </article>
       </div>
 
       <div class="middle">
-        <p class="steps">locate <b>→</b> copy <b>→</b> paste<br>repeat <b>×40</b></p>
+        <p data-t="problem.steps" class="steps">locate <b>→</b> copy <b>→</b> paste<br>repeat <b>×40</b></p>
         <div class="axis" aria-hidden="true"></div>
-        <p class="cost"><b>30 min</b><span>per order, by hand</span></p>
+        <p class="cost"><b>30 min</b><span data-t="problem.cost">per order, by hand</span></p>
       </div>
 
       <div class="form-out">
-        <div class="doc-h"><b>Standard order sheet</b><span>Warehouse</span></div>
+        <div class="doc-h"><b data-t="problem.sheet">Standard order sheet</b><span data-t="problem.wh">Warehouse</span></div>
         <div class="form-g">
           <div class="fr hd"><span>SKU</span><span>Store</span><span>Qty</span><span>Amount</span></div>
           <div class="fr bd"><span></span><span></span><span></span><span></span></div>
@@ -772,7 +792,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
           <div class="fr bd"><span></span><span></span><span></span><span></span></div>
           <div class="fr bd"><span></span><span></span><span></span><span></span></div>
         </div>
-        <p class="form-e">Empty until someone fills it</p>
+        <p data-t="problem.empty" class="form-e">Empty until someone fills it</p>
       </div>
     </div>
   </div>
@@ -787,8 +807,8 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
       <div class="b-head" data-r>
         <span class="b-no">01</span>
         <div>
-          <h3 class="b-title">Start with the order type.</h3>
-          <p class="b-note">Four types, four sequences. Picking one sets every step, document and email that follows.</p>
+          <h3 class="b-title" data-t="b1.t">Start with the order type.</h3>
+          <p class="b-note" data-t="b1.n">Four types, four sequences. Picking one sets every step, document and email that follows.</p>
         </div>
       </div>
       <div class="stage" data-r>
@@ -804,15 +824,15 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
       <div class="b-head" data-r>
         <span class="b-no">02</span>
         <div>
-          <h3 class="b-title">Read whatever arrives.</h3>
-          <p class="b-note">Columns matched by name and by content. Matrix orders expand into one line per store.</p>
+          <h3 class="b-title" data-t="b2.t">Read whatever arrives.</h3>
+          <p class="b-note" data-t="b2.n">Columns matched by name and by content. Matrix orders expand into one line per store.</p>
         </div>
       </div>
 
       <div id="artFile">
         <div class="stage" data-r>
           <div class="panel-card demo" id="artIntake">
-            <p class="sub-l"><i aria-hidden="true"></i><span>A standard file</span></p>
+            <p class="sub-l"><i aria-hidden="true"></i><span data-t="intake.sl1">A standard file</span></p>
             <div class="rail">
               <div class="rail-i" data-s="1"><span class="d"></span><span class="n">01</span> Read</div>
               <div class="rail-i" data-s="2"><span class="d"></span><span class="n">02</span> Map</div>
@@ -821,9 +841,9 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             </div>
 
             <button class="drop" id="drop" type="button">
-              <span>A wholesaler's PDF, 41 lines, French column names</span>
-              <span class="cue">Play demo</span>
-              <span class="sub">Nothing is uploaded — the sequence is played back locally</span>
+              <span data-t="intake.drop">A wholesaler's PDF, 41 lines, French column names</span>
+              <span class="cue" data-t="play">Play demo</span>
+              <span class="sub" data-t="intake.dropsub">Nothing is uploaded — the sequence is played back locally</span>
             </button>
 
             <div class="chip-f" aria-live="polite">
@@ -833,7 +853,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             <div class="bar" aria-hidden="true"><i></i></div>
 
             <div class="pn" id="pnMap">
-              <p class="sub-l" style="margin-top:26px"><i aria-hidden="true"></i><span>Field mapping</span></p>
+              <p class="sub-l" style="margin-top:26px"><i aria-hidden="true"></i><span data-t="intake.sl2">Field mapping</span></p>
               <div class="map" id="map">
                 <svg id="wires" aria-hidden="true"></svg>
                 <div class="kv src" id="s0" style="--r:1"><span class="k">Boutique</span><span class="t">text</span></div>
@@ -854,7 +874,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
             </div>
 
             <div class="pn" id="pnOut">
-              <p class="sub-l" style="margin-top:26px"><i aria-hidden="true"></i><span>Order sheet, then the email</span></p>
+              <p class="sub-l" style="margin-top:26px"><i aria-hidden="true"></i><span data-t="intake.sl3">Order sheet, then the email</span></p>
               <div class="outs">
                 <div>
                   <div class="sheet-h">
@@ -863,7 +883,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
                   </div>
                   <div class="tscroll">
                     <table>
-                      <thead><tr><th>SKU</th><th>Description</th><th>Store</th><th class="n">Qty</th><th class="n">Amount</th></tr></thead>
+                      <thead><tr><th>SKU</th><th>Description</th><th data-t="th.store">Store</th><th class="n">Qty</th><th class="n">Amount</th></tr></thead>
                       <tbody id="tb">
                         <tr><td class="sku">LMN-N-RG-DI-4402</td><td>Arc necklace, rose gold</td><td>VR-01</td><td class="n">6</td><td class="n">7 440,00</td></tr>
                         <tr><td class="sku">LMN-B-WG-DI-2218</td><td>Arc bracelet, white gold</td><td>VR-01</td><td class="n">8</td><td class="n">7 840,00</td></tr>
@@ -875,7 +895,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
                       <tfoot><tr><td colspan="3" class="l">Total — 6 lines</td><td class="n">41</td><td class="n">44 065,00</td></tr></tfoot>
                     </table>
                   </div>
-                  <p class="ok"><svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.4l3.2 3.2L13 4.8"/></svg>41 pieces = 41 stated on the PDF</p>
+                  <p class="ok"><svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.4l3.2 3.2L13 4.8"/></svg><span data-t="intake.ok">41 pieces = 41 stated on the PDF</span></p>
                 </div>
 
                 <div>
@@ -883,7 +903,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
                     <p class="mail-top">Email ready to send <span class="auto">· To, Cc and figures filled in</span></p>
                     <div class="mail-in">
                       <dl class="mrow"><dt>To</dt><dd>Logistics Lead &lt;logistics@example.com&gt;</dd></dl>
-                      <dl class="mrow"><dt>Cc</dt><dd><b>Regional distribution list</b> — resolved from the account</dd></dl>
+                      <dl class="mrow"><dt>Cc</dt><dd><b data-t="intake.cc">Regional distribution list</b> — resolved from the account</dd></dl>
                       <p class="msubj">Shipment plan — Atelier Verrier — PO 4471</p>
                       <p class="mbody" id="mb">Hello,
 
@@ -895,9 +915,9 @@ Best regards,
 Wholesale Operations</p>
                       <div class="mail-acts">
                         <a class="btn-mail" id="mailLink" href="#" target="_blank" rel="noopener">Open in Outlook <span class="arw" aria-hidden="true">→</span></a>
-                        <button class="ghost" id="copyBtn" type="button">Copy draft</button>
+                        <button class="ghost" id="copyBtn" type="button" data-t="intake.copy">Copy draft</button>
                       </div>
-                      <p class="mail-note">Opens a pre-filled compose window. No template to find, no Cc list to rebuild.</p>
+                      <p data-t="intake.note" class="mail-note">Opens a pre-filled compose window. No template to find, no Cc list to rebuild.</p>
                     </div>
                   </div>
                 </div>
@@ -905,61 +925,61 @@ Wholesale Operations</p>
             </div>
 
             <div class="again">
-              <button class="ghost" id="againBtn" type="button">Play demo again</button>
-              <span class="hint">Fictional file, fictional prices.</span>
+              <button class="ghost" id="againBtn" type="button" data-t="intake.again">Play demo again</button>
+              <span class="hint" data-t="intake.hint">Fictional file, fictional prices.</span>
             </div>
           </div>
         </div>
 
         <div class="stage" data-r>
           <div class="panel-card" id="artSplit">
-            <p class="sub-l"><i aria-hidden="true"></i><span>A multi-store matrix</span></p>
+            <p class="sub-l"><i aria-hidden="true"></i><span data-t="split.sl">A multi-store matrix</span></p>
             <div class="split" id="splitWrap">
               <div class="fly-l" id="flyer" aria-hidden="true"></div>
               <div>
-                <div class="mh"><h4>As received</h4><span>PDF</span></div>
+                <div class="mh"><h4 data-t="split.recv">As received</h4><span>PDF</span></div>
                 <div class="mx"><div class="mx-g" id="matrix"></div></div>
-                <p class="mfoot"><span>Rows 1–8 of 30+ SKUs</span><span>400+ cells, 60+ filled</span></p>
+                <p class="mfoot"><span data-t="split.rows">Rows 1–8 of 30+ SKUs</span><span data-t="split.cells">400+ cells, 60+ filled</span></p>
               </div>
               <div class="smid">
                 <div class="ax" aria-hidden="true"></div>
-                <button class="btn-sp" id="splitBtn" type="button">Play demo</button>
+                <button class="btn-sp" id="splitBtn" type="button" data-t="play">Play demo</button>
                 <div class="ax" aria-hidden="true"></div>
               </div>
               <div>
-                <div class="mh"><h4>After the split</h4><span>Store lines</span></div>
-                <div class="lns" id="lnsBox"><p class="lempty">Awaiting split</p></div>
-                <p class="mfoot"><span>Each store, its own order</span><span>own reference</span></p>
+                <div class="mh"><h4 data-t="split.after">After the split</h4><span data-t="split.lines">Store lines</span></div>
+                <div class="lns" id="lnsBox"><p data-t="split.await" class="lempty">Awaiting split</p></div>
+                <p class="mfoot"><span data-t="split.each">Each store, its own order</span><span data-t="split.ref">own reference</span></p>
               </div>
             </div>
             <div class="recon" id="recon">
               <svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.4l3.2 3.2L13 4.8"/></svg>
               <p class="rtxt"><b>68</b> lines · <b>12</b> stores · <b>94</b> pieces = stated total <b>94</b></p>
-              <span class="rtag">Reconciled</span>
+              <span class="rtag" data-t="split.rec">Reconciled</span>
             </div>
           </div>
         </div>
 
         <div class="stage" data-r>
           <div class="panel-card" id="artProbe">
-            <p class="sub-l"><i aria-hidden="true"></i><span>When an account changes their layout</span></p>
+            <p class="sub-l"><i aria-hidden="true"></i><span data-t="probe.sl">When an account changes their layout</span></p>
             <div class="probe">
               <div class="probe-col">
-                <div class="probe-h"><b>The file</b><span>Stays on the machine</span></div>
+                <div class="probe-h"><b data-t="probe.a">The file</b><span data-t="probe.a2">Stays on the machine</span></div>
                 <div class="probe-r"><span>Boutique</span><span>AG 01</span></div>
                 <div class="probe-r"><span>Ref. article</span><span>LMN-N-RG-DI-4402</span></div>
                 <div class="probe-r"><span>Qté</span><span>3</span></div>
                 <div class="probe-r"><span>PU HT</span><span>1 240,00</span></div>
               </div>
               <div class="probe-col safe">
-                <div class="probe-h"><b>The structure report</b><span>Safe to send</span></div>
+                <div class="probe-h"><b data-t="probe.b">The structure report</b><span data-t="probe.b2">Safe to send</span></div>
                 <div class="probe-r"><span>Boutique</span><span>enum, 12 values</span></div>
                 <div class="probe-r"><span>Ref. article</span><span>product-code shape</span></div>
                 <div class="probe-r"><span>Qté</span><span>integer 1–200</span></div>
                 <div class="probe-r"><span>PU HT</span><span>decimal, 2 places</span></div>
               </div>
             </div>
-            <p class="probe-note">A parser needs updating when a layout changes — but nobody needs to see the data to do it. The probe reports column names and the <em>shape</em> of each column. Not one cell value.</p>
+            <p data-t="probe.note" class="probe-note">A parser needs updating when a layout changes — but nobody needs to see the data to do it. The probe reports column names and the <em>shape</em> of each column. Not one cell value.</p>
           </div>
         </div>
       </div>
@@ -970,8 +990,8 @@ Wholesale Operations</p>
       <div class="b-head" data-r>
         <span class="b-no">03</span>
         <div>
-          <h3 class="b-title">Walk the steps.</h3>
-          <p class="b-note">Each step says what to do, what to tick, and hands you the email — already addressed and copied.</p>
+          <h3 class="b-title" data-t="b3.t">Walk the steps.</h3>
+          <p class="b-note" data-t="b3.n">Each step says what to do, what to tick, and hands you the email — already addressed and copied.</p>
         </div>
       </div>
       <div class="stage" data-r>
@@ -979,9 +999,9 @@ Wholesale Operations</p>
           <p class="sub-l"><i aria-hidden="true"></i><span id="flowName">Standard — 6 steps</span></p>
           <div class="srail"><div class="srail-in" id="srail"></div></div>
           <div class="cols">
-            <div class="col"><h5>Do</h5><p class="do" id="wDo"></p><p class="dosub" id="wSub"></p></div>
-            <div class="col"><h5>Check</h5><div id="wCk"></div><p class="sync" id="syncMsg"></p></div>
-            <div class="col send"><h5>Send — one click</h5><div id="wMail"></div></div>
+            <div class="col"><h5 data-t="flow.do">Do</h5><p class="do" id="wDo"></p><p class="dosub" id="wSub"></p></div>
+            <div class="col"><h5 data-t="flow.check">Check</h5><div id="wCk"></div><p class="sync" id="syncMsg"></p></div>
+            <div class="col send"><h5 data-t="flow.send">Send — one click</h5><div id="wMail"></div></div>
           </div>
         </div>
       </div>
@@ -992,37 +1012,37 @@ Wholesale Operations</p>
       <div class="b-head" data-r>
         <span class="b-no">04</span>
         <div>
-          <h3 class="b-title">Track every open order.</h3>
-          <p class="b-note">Status, age and next action for each order. One click moves it forward and the counters follow.</p>
+          <h3 class="b-title" data-t="b4.t">Track every open order.</h3>
+          <p class="b-note" data-t="b4.n">Status, age and next action for each order. One click moves it forward and the counters follow.</p>
         </div>
       </div>
       <div class="stage" data-r>
         <div class="panel-card" id="artBoard">
           <div class="atabs" id="btabs" role="tablist" aria-label="Board view">
-            <button class="atab on" role="tab" aria-selected="true" data-b="0" type="button">Order board</button>
-            <button class="atab" role="tab" aria-selected="false" data-b="1" type="button">Back-order ledger</button>
+            <button class="atab on" role="tab" aria-selected="true" data-b="0" type="button" data-t="board.tab1">Order board</button>
+            <button class="atab" role="tab" aria-selected="false" data-b="1" type="button" data-t="board.tab2">Back-order ledger</button>
           </div>
           <div id="paneOrders" style="margin-top:20px">
             <div class="kcards" id="kcards"></div>
             <div class="board">
               <table>
-                <thead><tr><th>Order</th><th>Account</th><th>Type</th><th>Status</th><th class="n">Days open</th><th>Next action</th><th></th></tr></thead>
+                <thead><tr><th data-t="th.order">Order</th><th data-t="th.acct">Account</th><th data-t="th.type">Type</th><th data-t="th.status">Status</th><th class="n" data-t="th.days">Days open</th><th data-t="th.next">Next action</th><th></th></tr></thead>
                 <tbody id="boardBody"></tbody>
               </table>
             </div>
             <div class="board-foot">
-              <button class="ghost" id="boardReset" type="button">Reset the board</button>
-              <p>Sixteen statuses, the same ones the order file uses. Ticking the last check of a step in block 03 moves the matching order along here.</p>
+              <button class="ghost" id="boardReset" type="button" data-t="board.reset">Reset the board</button>
+              <p data-t="board.note">Sixteen statuses, the same ones the order file uses. Ticking the last check of a step in block 03 moves the matching order along here.</p>
             </div>
           </div>
           <div id="paneBo" style="margin-top:20px;display:none">
             <div class="board">
               <table>
-                <thead><tr><th>SKU</th><th>Account</th><th class="n">Ordered</th><th class="n">Shipped</th><th class="n">Outstanding</th><th class="n">Carried</th></tr></thead>
+                <thead><tr><th>SKU</th><th data-t="th.acct">Account</th><th class="n" data-t="th.ordered">Ordered</th><th class="n" data-t="th.shipped">Shipped</th><th class="n" data-t="th.outstanding">Outstanding</th><th class="n" data-t="th.carried">Carried</th></tr></thead>
                 <tbody id="boBody"></tbody>
               </table>
             </div>
-            <p class="bo-note">The order board is one row per order. This is one row per SKU — how many pieces an account is still owed. Anything carried three months or more is flagged. Clearing the ledger archives a monthly snapshot; it never deletes.</p>
+            <p data-t="bo.note" class="bo-note">The order board is one row per order. This is one row per SKU — how many pieces an account is still owed. Anything carried three months or more is flagged. Clearing the ledger archives a monthly snapshot; it never deletes.</p>
           </div>
         </div>
       </div>
@@ -1033,8 +1053,8 @@ Wholesale Operations</p>
       <div class="b-head" data-r>
         <span class="b-no">05</span>
         <div>
-          <h3 class="b-title">Read the whole portfolio.</h3>
-          <p class="b-note">The same order data, re-cut on demand — by collection, market, product line or against previous years.</p>
+          <h3 class="b-title" data-t="b5.t">Read the whole portfolio.</h3>
+          <p class="b-note" data-t="b5.n">The same order data, re-cut on demand — by collection, market, product line or against previous years.</p>
         </div>
       </div>
       <div class="stage" data-r>
@@ -1053,8 +1073,8 @@ Wholesale Operations</p>
       <div class="b-head" data-r>
         <span class="b-no">06</span>
         <div>
-          <h3 class="b-title">Manage the account, not the order.</h3>
-          <p class="b-note">For every wholesaler: what the stock is doing, how it compares to its market, what happened in each store, and what to do next.</p>
+          <h3 class="b-title" data-t="b6.t">Manage the account, not the order.</h3>
+          <p class="b-note" data-t="b6.n">For every wholesaler: what the stock is doing, how it compares to its market, what happened in each store, and what to do next.</p>
         </div>
       </div>
       <div class="stage" data-r>
@@ -1065,23 +1085,23 @@ Wholesale Operations</p>
           <div id="acctMkt"></div>
           <div class="diag" id="acctDiag"></div>
 
-          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>What happened, and where</span></p>
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span data-t="acct.sl1">What happened, and where</span></p>
           <div class="tl" id="acctTl"></div>
 
-          <div class="attr-h"><b>Which store moved the number</b><span id="attrRange"></span></div>
+          <div class="attr-h"><b data-t="acct.attr">Which store moved the number</b><span id="attrRange"></span></div>
           <div class="achart" id="acctChart"></div>
           <div class="stores">
             <table>
-              <thead><tr><th>Store</th><th class="n">Sell-in</th><th class="n">Sell-out</th><th class="n">ST%</th><th class="n">Cover</th><th class="n">Contribution</th><th>What happened</th></tr></thead>
+              <thead><tr><th data-t="th.store">Store</th><th class="n">Sell-in</th><th class="n">Sell-out</th><th class="n">ST%</th><th class="n" data-t="th.cover">Cover</th><th class="n" data-t="th.contrib">Contribution</th><th data-t="th.what">What happened</th></tr></thead>
               <tbody id="acctRows"></tbody>
             </table>
           </div>
 
-          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>Why — pick a store, then what you think caused it</span></p>
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span data-t="acct.sl2">Why — pick a store, then what you think caused it</span></p>
           <div class="why-pick" id="whyStores" role="group" aria-label="Store"></div>
           <div class="why-list" id="whyCauses"></div>
 
-          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span>What I would do next</span></p>
+          <p class="sub-l" style="margin-top:28px"><i aria-hidden="true"></i><span data-t="acct.sl3">What I would do next</span></p>
           <ol class="acts" id="acctActs"></ol>
         </div>
       </div>
@@ -1093,20 +1113,20 @@ Wholesale Operations</p>
 <!-- ===================== ACT III · CTA ===================== -->
 <section class="cta" id="cta">
   <div class="wrap">
-    <p class="eyebrow" data-r>The demonstration</p>
-    <h2 data-r style="margin-top:12px">See the whole thing run.</h2>
-    <p class="sub" data-r>Order type, file, steps, board, numbers — in order.</p>
+    <p class="eyebrow" data-t="cta.eyebrow" data-r>The demonstration</p>
+    <h2 data-t="cta.h2" data-r style="margin-top:12px">See the whole thing run.</h2>
+    <p data-t="cta.sub" class="sub" data-r>Order type, file, steps, board, numbers — in order.</p>
 
     <button class="btn-cta" id="ctaBtn" type="button">
-      Experience the workflow <span class="arw" aria-hidden="true">→</span>
+      <span data-t="cta.btn">Experience the workflow</span> <span class="arw" aria-hidden="true">→</span>
     </button>
-    <p class="fine">About 20 seconds · pause or skip at any point</p>
+    <p data-t="cta.fine" class="fine">About 20 seconds · pause or skip at any point</p>
 
     <p class="contact">
       Liyi Gao · <a href="mailto:liyi.gao.dm@gmail.com">liyi.gao.dm@gmail.com</a> ·
       <a href="https://www.linkedin.com/in/liyi-gao" target="_blank" rel="noopener">linkedin.com/in/liyi-gao</a> · Paris, France
     </p>
-    <p class="disclaim">Demonstration built entirely on fictional data. Does not reproduce any employer's data, processes or systems.</p>
+    <p data-t="cta.disclaim" class="disclaim">Demonstration built entirely on fictional data. Does not reproduce any employer's data, processes or systems.</p>
   </div>
 </section>
 
@@ -1118,18 +1138,18 @@ Wholesale Operations</p>
   <div class="ov-top">
     <p class="ov-cap" id="ovCap"><b>01</b> Pick the order type</p>
     <div class="ov-ctrl">
-      <button class="ov-skip" id="ovPrev" type="button">← Back</button>
-      <button class="ov-skip pp" id="ovPP" type="button" aria-pressed="false">Pause</button>
-      <button class="ov-skip" id="ovNext" type="button">Next →</button>
-      <button class="ov-skip" id="ovSkip" type="button">Close · Esc</button>
+      <button class="ov-skip" id="ovPrev" type="button" data-t="ov.back">← Back</button>
+      <button class="ov-skip pp" id="ovPP" type="button" aria-pressed="false" data-t="ov.pause">Pause</button>
+      <button class="ov-skip" id="ovNext" type="button" data-t="ov.next">Next →</button>
+      <button class="ov-skip" id="ovSkip" type="button" data-t="ov.close">Close · Esc</button>
     </div>
   </div>
   <div class="ov-bar" id="ovBar" role="group" aria-label="Go to step"></div>
   <div class="ov-stage" id="ovStage"></div>
   <div class="ov-end">
-    <button class="ov-skip" id="ovReplay" type="button">Play all six from the start</button>
-    <button class="ov-skip" id="ovClose" type="button">Close</button>
-    <span class="lnk">Built as a local tool — nothing here was uploaded.</span>
+    <button class="ov-skip" id="ovReplay" type="button" data-t="ov.replay">Play all six from the start</button>
+    <button class="ov-skip" id="ovClose" type="button" data-t="ov.close2">Close</button>
+    <span class="lnk" data-t="ov.lnk">Built as a local tool — nothing here was uploaded.</span>
   </div>
 </div>
 
@@ -1140,6 +1160,35 @@ var q=function(s,r){return (r||document).querySelector(s);};
 var qa=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+
+/* ---------------- i18n ---------------- */
+var T={"en":{"lang.name":"English","play":"Play demo","steps":"steps","hero.sub":"Pick the order type, drop in whatever file arrives, and every step, document and email is prepared for you.","hero.tag":"Runs offline · nothing uploaded","me.role":"Designed &amp; built by","me.where":"Wholesale operations · Paris","shell.local":"running locally · no sign-in","shell.copilot":"Copilot","shell.choose":"Choose a module","shell.env":"Environment","shell.envv":"Local folder · data<br>Last updated 12:40","shell.kick":"Order · Sales · Client","shot.hint":"Click a module to open it · close it and try the next one","mod.1":"Order management","mod.2":"Sales analysis","mod.3":"Account management","card.tx1":"End to end, from enquiry to shipment plan. Every step says what to do and who to write to.","card.tx2":"One dataset across time, market, collection and price band. The angle changes the answer.","card.tx3":"Where the stock sits, which store moved the number, and why it stopped there.","shell.s1":"Orders in progress","shell.s2":"Closed","shell.s3":"Ageing past threshold","shell.s4":"Sell-in records","shot.cap":"<b>The tool itself.</b> Rebuilt here with a fictional maison and fictional figures — the layout, the three modules and the flow are the real ones.","fig.1":"Wholesale accounts","fig.2":"Order workflows","fig.3":"Lines from one PDF","problem.eyebrow":"The problem","problem.h2":"Every order arrives different.","problem.lede":"Different headers, different order, sometimes no price column. One is a matrix. The warehouse accepts one format only.","doc.n1":"French headers · store code inside the description","doc.n2":"<b>No price column</b> — prices sit in a rate card","doc.n3":"<b>A matrix</b> — twelve stores across the columns","problem.steps":"locate <b>→</b> copy <b>→</b> paste<br>repeat <b>×40</b>","problem.cost":"per order, by hand","problem.sheet":"Standard order sheet","problem.wh":"Warehouse","problem.empty":"Empty until someone fills it","b1.t":"Start with the order type.","b1.n":"Four types, four sequences. Picking one sets every step, document and email that follows.","b2.t":"Read whatever arrives.","b2.n":"Columns matched by name and by content. Matrix orders expand into one line per store.","b3.t":"Walk the steps.","b3.n":"Each step says what to do, what to tick, and hands you the email — already addressed and copied.","b4.t":"Track every open order.","b4.n":"Status, age and next action for each order. One click moves it forward and the counters follow.","b5.t":"Read the whole portfolio.","b5.n":"The same order data, re-cut on demand — by collection, market, product line or against previous years.","b6.t":"Manage the account, not the order.","b6.n":"For every wholesaler: what the stock is doing, how it compares to its market, what happened in each store, and what to do next.","intake.sl1":"A standard file","intake.sl2":"Field mapping","intake.sl3":"Order sheet, then the email","intake.drop":"A wholesaler's PDF, 41 lines, French column names","intake.dropsub":"Nothing is uploaded — the sequence is played back locally","intake.ok":"41 pieces = 41 stated on the PDF","intake.mailtop":"Email ready to send","intake.mailauto":"· To, Cc and figures filled in","intake.cc":"Regional distribution list","intake.note":"Opens a pre-filled compose window. No template to find, no Cc list to rebuild.","intake.copy":"Copy draft","intake.copied":"Copied","intake.again":"Play demo again","intake.hint":"Fictional file, fictional prices.","intake.outlook":"Open in Outlook","split.sl":"A multi-store matrix","split.recv":"As received","split.after":"After the split","split.lines":"Store lines","split.rows":"Rows 1–8 of 30+ SKUs","split.cells":"400+ cells, 60+ filled","split.await":"Awaiting split","split.each":"Each store, its own order","split.ref":"own reference","split.rec":"Reconciled","probe.sl":"When an account changes their layout","probe.a":"The file","probe.a2":"Stays on the machine","probe.b":"The structure report","probe.b2":"Safe to send","probe.note":"A parser needs updating when a layout changes — but nobody needs to see the data to do it. The probe reports column names and the <em>shape</em> of each column. Not one cell value.","flow.do":"Do","flow.check":"Check","flow.send":"Send — one click","board.tab1":"Order board","board.tab2":"Back-order ledger","board.reset":"Reset the board","board.note":"Sixteen statuses, the same ones the order file uses. Ticking the last check of a step in block 03 moves the matching order along here.","bo.note":"The order board is one row per order. This is one row per SKU — how many pieces an account is still owed. Anything carried three months or more is flagged. Clearing the ledger archives a monthly snapshot; it never deletes.","th.order":"Order","th.acct":"Account","th.type":"Type","th.status":"Status","th.days":"Days open","th.next":"Next action","th.ordered":"Ordered","th.shipped":"Shipped","th.outstanding":"Outstanding","th.carried":"Carried","th.store":"Store","th.cover":"Cover","th.contrib":"Contribution","th.what":"What happened","acct.sl1":"What happened, and where","acct.attr":"Which store moved the number","acct.sl2":"Why — pick a store, then what you think caused it","acct.sl3":"What I would do next","acct.k1":"Sell-in, pieces","acct.k2":"Sell-out, pieces","acct.k3":"Sell-through","acct.k4":"Months of cover","acct.k5":"Year on year","acct.market":"market","acct.nostock":"stock not imported","acct.vs":"Against its market","acct.accounts":"accounts","acct.this":"This account","acct.average":"average","acct.diff":"points of difference.","acct.notice":"<b>%s sends no stock file.</b> Its sell-through shows — rather than 0%, because a missing import is not the same as a store that has stopped selling. Any cause needing stock data is marked below and cannot be tested.","acct.range":"Points of the %s change, by store","acct.nocause":"No candidate causes recorded for this store.","acts.picked":"From the causes you picked","acts.account":"Account level","src.data":"From the data","src.log":"From the store log","src.market":"From the market","src.need":"Needs the stock file","dg0t":"Stock is building, not selling.","dg0d":"39% sell-through against 47% for the market, with 5.8 months of cover at the current rate.","dg0c":"rule: ST% < 45% and cover > 5 months","dg1t":"One store carries most of it.","dg1d":"Ashgrove alone is 11.4 of the 18.0 point fall, and Belvedere is up. A store problem, not an account problem.","dg1c":"rule: one store > 50% of the total change","acct.mktread":"Twelve of the eighteen points are the account’s own, not the market’s.","acct.a0":"Chase the Dunmore stock file — a quarter of this account cannot be read without it.","wh.0":"Closed six weeks for renovation, but shipments kept arriving","wh.1":"Lost its senior sales associate in March","wh.2":"Private client evening in May sold forty pieces in a week","wh.3":"No stock file has ever arrived from this store","cz.0.stock.l":"Stock outran demand","cz.0.stock.e":"7.2 months of cover against 3.4 for the account.","cz.0.stock.a":["Hold the September allocation until cover falls below five months.","Move slow lines to a store that is short."],"cz.0.closed.l":"Six weeks closed for renovation","cz.0.closed.e":"April to mid-May, recorded before the season started.","cz.0.closed.a":["Re-baseline Ashgrove on the months it actually traded."],"cz.1.staff.l":"Lost its senior seller","cz.1.staff.e":"March, not replaced as of August.","cz.1.staff.a":["Repeat the Belvedere evening here before the November peak."],"cz.1.stock.l":"Stock is building","cz.1.stock.e":"6.4 months of cover at 36% sell-through.","cz.1.stock.a":["Pause replenishment for one cycle."],"cz.2.event.l":"The May evening worked","cz.2.event.e":"Forty pieces in the week that followed.","cz.2.event.a":["Copy the format to Crestwood and Dunmore."],"cz.3.stock.l":"Stock explanation cannot be tested","cz.3.stock.e":"No stock snapshot from this store, so sell-through shows — rather than 0%.","cz.3.stock.a":[],"cz.3.noevent.l":"No event this year","cz.3.noevent.e":"A trunk show ran in the same period last year.","cz.3.noevent.a":["Put Dunmore on the Q4 event calendar."],"v0t":"By collection","v0h":"Volume sits in one collection.","v0p":"Pieces shipped over twelve months. The tail decides next season’s assortment.","v0k0":"Pieces shipped","v0k1":"From one collection","v1t":"By market","v1h":"Sell-in is not sell-out.","v1p":"<em>Sell-in</em> is what we ship. <em>Sell-out</em> is what they sell. The gap shows who is holding stock.","v1k0":"Average sell-through","v1k1":"Held in stock","v2t":"By product line","v2h":"Volume and value disagree.","v2p":"Core carries the pieces, Fine carries the money. Same dataset, regrouped on request.","v2k0":"Highest volume","v2k1":"Highest value","v3t":"Year over year","v3h":"The calendar repeats.","v3p":"Three years in € thousands. The August dip and November peak arrive every year.","v3k0":"2025 on 2024","v3k1":"Peak, every year","chart.sellin":"Sell-in","chart.sellout":"Sell-out","chart.st":"Sell-through","ov.back":"← Back","ov.pause":"Pause","ov.play":"Play","ov.next":"Next →","ov.close":"Close · Esc","ov.replay":"Play all six from the start","ov.close2":"Close","ov.lnk":"Built as a local tool — nothing here was uploaded.","sc0":"Pick the order type","sc1":"Read the incoming file","sc2":"Walk the steps, send the email","sc3":"Track the order","sc4":"Read the portfolio","sc5":"Manage the account, store by store","cta.eyebrow":"The demonstration","cta.h2":"See the whole thing run.","cta.sub":"Order type, file, steps, board, numbers — in order.","cta.btn":"Experience the workflow","cta.fine":"About 20 seconds · pause or skip at any point","cta.disclaim":"Demonstration built entirely on fictional data. Does not reproduce any employer's data, processes or systems."},"fr":{"lang.name":"Français","play":"Lancer la démo","steps":"étapes","hero.sub":"Choisissez le type de commande, déposez le fichier reçu : chaque étape, chaque document et chaque e-mail sont préparés pour vous.","hero.tag":"Fonctionne hors ligne · aucun envoi","me.role":"Conçu et développé par","me.where":"Opérations wholesale · Paris","shell.local":"exécution locale · sans connexion","shell.copilot":"Copilot","shell.choose":"Choisir un module","shell.env":"Environnement","shell.envv":"Dossier local · data<br>Dernière mise à jour 12:40","shell.kick":"Commande · Ventes · Client","shot.hint":"Cliquez sur un module pour l'ouvrir · fermez-le puis essayez le suivant","mod.1":"Gestion des commandes","mod.2":"Analyse des ventes","mod.3":"Gestion des comptes","card.tx1":"De bout en bout, de la demande au plan d'expédition. Chaque étape indique quoi faire et à qui écrire.","card.tx2":"Un même jeu de données par période, marché, collection et gamme de prix. L'angle change la réponse.","card.tx3":"Où dort le stock, quelle boutique a fait bouger le chiffre, et pourquoi il s'est arrêté là.","shell.s1":"Commandes en cours","shell.s2":"Clôturées","shell.s3":"Au-delà du délai convenu","shell.s4":"Enregistrements sell-in","shot.cap":"<b>L'outil lui-même.</b> Reconstruit ici avec une maison et des chiffres fictifs — la mise en page, les trois modules et le déroulé sont les vrais.","fig.1":"Comptes wholesale","fig.2":"Processus de commande","fig.3":"Lignes issues d’un seul PDF","problem.eyebrow":"Le problème","problem.h2":"Chaque commande arrive différemment.","problem.lede":"En-têtes différents, ordre différent, parfois aucune colonne de prix. L’une est une matrice. L’entrepôt n’accepte qu’un seul format.","doc.n1":"En-têtes en français · code boutique noyé dans la description","doc.n2":"<b>Aucune colonne de prix</b> — les prix sont dans un barème séparé","doc.n3":"<b>Une matrice</b> — douze boutiques en colonnes","problem.steps":"repérer <b>→</b> copier <b>→</b> coller<br>répéter <b>×40</b>","problem.cost":"par commande, à la main","problem.sheet":"Feuille de commande standard","problem.wh":"Entrepôt","problem.empty":"Vide tant que personne ne la remplit","b1.t":"Commencer par le type de commande.","b1.n":"Quatre types, quatre séquences. En choisir un fixe chaque étape, chaque document et chaque e-mail qui suit.","b2.t":"Lire ce qui arrive, quel qu’en soit le format.","b2.n":"Colonnes appariées par nom et par contenu. Les commandes en matrice se déplient en une ligne par boutique.","b3.t":"Dérouler les étapes.","b3.n":"Chaque étape indique quoi faire, quoi cocher, et fournit l’e-mail — destinataires et copies déjà remplis.","b4.t":"Suivre chaque commande ouverte.","b4.n":"Statut, ancienneté et action suivante pour chaque commande. Un clic la fait avancer et les compteurs suivent.","b5.t":"Lire l’ensemble du portefeuille.","b5.n":"Les mêmes données, recoupées à la demande — par collection, marché, ligne de produit ou face aux années précédentes.","b6.t":"Gérer le compte, pas seulement la commande.","b6.n":"Pour chaque client wholesale : ce que fait le stock, sa position face à son marché, ce qui s’est passé dans chaque boutique, et quoi faire ensuite.","intake.sl1":"Un fichier standard","intake.sl2":"Appariement des colonnes","intake.sl3":"Feuille de commande, puis l’e-mail","intake.drop":"Le PDF d’un client, 41 lignes, en-têtes en français","intake.dropsub":"Rien n’est envoyé — la séquence est rejouée localement","intake.ok":"41 pièces = 41 annoncées sur le PDF","intake.mailtop":"E-mail prêt à envoyer","intake.mailauto":"· destinataires, copies et montants déjà remplis","intake.cc":"Liste de diffusion régionale","intake.note":"Ouvre une fenêtre de rédaction pré-remplie. Aucun modèle à retrouver, aucune liste de copie à reconstituer.","intake.copy":"Copier le brouillon","intake.copied":"Copié","intake.again":"Rejouer la démo","intake.hint":"Fichier fictif, prix fictifs.","intake.outlook":"Ouvrir dans Outlook","split.sl":"Une matrice multi-boutiques","split.recv":"Tel que reçu","split.after":"Après éclatement","split.lines":"Lignes par boutique","split.rows":"Lignes 1–8 sur plus de 30 références","split.cells":"400+ cellules, 60+ renseignées","split.await":"En attente d’éclatement","split.each":"Chaque boutique, sa propre commande","split.ref":"sa propre référence","split.rec":"Rapproché","probe.sl":"Quand un client change la mise en page de son fichier","probe.a":"Le fichier","probe.a2":"Reste sur la machine","probe.b":"Le rapport de structure","probe.b2":"Peut être envoyé","probe.note":"Un analyseur doit être mis à jour quand la mise en page change — mais personne n’a besoin de voir les données pour cela. La sonde rapporte les noms de colonnes et la <em>forme</em> de chacune. Pas une seule valeur.","flow.do":"À faire","flow.check":"À cocher","flow.send":"Envoyer — en un clic","board.tab1":"Tableau des commandes","board.tab2":"Registre des reliquats","board.reset":"Réinitialiser le tableau","board.note":"Seize statuts, les mêmes que dans le fichier de commandes. Cocher la dernière case d’une étape du bloc 03 fait avancer la commande correspondante ici.","bo.note":"Le tableau des commandes compte une ligne par commande. Ici, une ligne par référence — combien de pièces restent dues à un client. Tout ce qui est reporté trois mois ou plus est signalé. Vider le registre archive un instantané mensuel ; rien n’est supprimé.","th.order":"Commande","th.acct":"Compte","th.type":"Type","th.status":"Statut","th.days":"Jours ouverts","th.next":"Action suivante","th.ordered":"Commandé","th.shipped":"Expédié","th.outstanding":"Restant dû","th.carried":"Reporté","th.store":"Boutique","th.cover":"Couverture","th.contrib":"Contribution","th.what":"Ce qui s’est passé","acct.sl1":"Ce qui s’est passé, et où","acct.attr":"Quelle boutique a fait bouger le chiffre","acct.sl2":"Pourquoi — choisissez une boutique, puis la cause que vous retenez","acct.sl3":"Ce que je ferais ensuite","acct.k1":"Sell-in, pièces","acct.k2":"Sell-out, pièces","acct.k3":"Taux de vente","acct.k4":"Mois de couverture","acct.k5":"Évolution annuelle","acct.market":"marché","acct.nostock":"stock non importé","acct.vs":"Face à son marché","acct.accounts":"comptes","acct.this":"Ce compte","acct.average":"moyenne","acct.diff":"points d’écart.","acct.notice":"<b>%s n’envoie aucun fichier de stock.</b> Son taux de vente affiche — et non 0 %, car un import manquant n’est pas une boutique qui a cessé de vendre. Toute cause nécessitant le stock est signalée ci-dessous et ne peut être testée.","acct.range":"Points de la variation de %s, par boutique","acct.nocause":"Aucune cause candidate enregistrée pour cette boutique.","acts.picked":"D’après les causes retenues","acts.account":"Au niveau du compte","src.data":"D’après les données","src.log":"D’après le journal de la boutique","src.market":"D’après le marché","src.need":"Nécessite le fichier de stock","dg0t":"Le stock s’accumule au lieu de se vendre.","dg0d":"Taux de vente de 39 % contre 47 % pour le marché, avec 5,8 mois de couverture au rythme actuel.","dg0c":"règle : taux de vente < 45 % et couverture > 5 mois","dg1t":"Une seule boutique en porte l’essentiel.","dg1d":"Ashgrove représente à elle seule 11,4 des 18,0 points de baisse, et Belvedere progresse. Un problème de boutique, pas de compte.","dg1c":"règle : une boutique > 50 % de la variation totale","acct.mktread":"Douze des dix-huit points viennent du compte lui-même, pas du marché.","acct.a0":"Relancer Dunmore pour son fichier de stock — un quart de ce compte est illisible sans lui.","wh.0":"Fermée six semaines pour travaux, mais les livraisons ont continué","wh.1":"A perdu sa vendeuse senior en mars","wh.2":"Soirée clients privés en mai : quarante pièces en une semaine","wh.3":"Aucun fichier de stock n’est jamais arrivé de cette boutique","cz.0.stock.l":"Le stock a dépassé la demande","cz.0.stock.e":"7,2 mois de couverture contre 3,4 pour le compte.","cz.0.stock.a":["Suspendre l’allocation de septembre jusqu’à retomber sous cinq mois de couverture.","Transférer les lignes lentes vers une boutique en manque."],"cz.0.closed.l":"Six semaines de fermeture pour travaux","cz.0.closed.e":"D’avril à la mi-mai, consigné avant le début de la saison.","cz.0.closed.a":["Recalculer la base d’Ashgrove sur les mois réellement ouverts."],"cz.1.staff.l":"Départ de la vendeuse senior","cz.1.staff.e":"En mars, toujours pas remplacée en août.","cz.1.staff.a":["Reproduire ici la soirée de Belvedere avant le pic de novembre."],"cz.1.stock.l":"Le stock s’accumule","cz.1.stock.e":"6,4 mois de couverture pour un taux de vente de 36 %.","cz.1.stock.a":["Suspendre le réassort pendant un cycle."],"cz.2.event.l":"La soirée de mai a fonctionné","cz.2.event.e":"Quarante pièces dans la semaine qui a suivi.","cz.2.event.a":["Reproduire le format à Crestwood et Dunmore."],"cz.3.stock.l":"L’hypothèse stock ne peut pas être testée","cz.3.stock.e":"Aucun relevé de stock de cette boutique : le taux de vente affiche — et non 0 %.","cz.3.stock.a":[],"cz.3.noevent.l":"Aucun événement cette année","cz.3.noevent.e":"Un trunk show avait eu lieu à la même période l’an dernier.","cz.3.noevent.a":["Inscrire Dunmore au calendrier d’événements du T4."],"v0t":"Par collection","v0h":"Le volume tient à une seule collection.","v0p":"Pièces expédiées sur douze mois. La traîne décide de l’assortiment de la saison prochaine.","v0k0":"Pièces expédiées","v0k1":"Sur une seule collection","v1t":"Par marché","v1h":"Sell-in n’est pas sell-out.","v1p":"<em>Sell-in</em>, c’est ce que nous expédions. <em>Sell-out</em>, ce qu’ils vendent. L’écart montre qui garde le stock.","v1k0":"Taux de vente moyen","v1k1":"Encore en stock","v2t":"Par ligne de produit","v2h":"Le volume et la valeur divergent.","v2p":"Core porte les volumes, Fine porte la valeur. Mêmes données, regroupées autrement.","v2k0":"Volume le plus élevé","v2k1":"Valeur la plus élevée","v3t":"D’une année sur l’autre","v3h":"Le calendrier se répète.","v3p":"Trois années en milliers d’euros. Le creux d’août et le pic de novembre reviennent chaque année.","v3k0":"2025 sur 2024","v3k1":"Pic, chaque année","chart.sellin":"Sell-in","chart.sellout":"Sell-out","chart.st":"Taux de vente","ov.back":"← Précédent","ov.pause":"Pause","ov.play":"Lecture","ov.next":"Suivant →","ov.close":"Fermer · Échap","ov.replay":"Tout relire depuis le début","ov.close2":"Fermer","ov.lnk":"Outil local — rien n’a été envoyé ici.","sc0":"Choisir le type de commande","sc1":"Lire le fichier reçu","sc2":"Dérouler les étapes, envoyer l’e-mail","sc3":"Suivre la commande","sc4":"Lire le portefeuille","sc5":"Gérer le compte, boutique par boutique","cta.eyebrow":"La démonstration","cta.h2":"Voir l’ensemble en fonctionnement.","cta.sub":"Type de commande, fichier, étapes, tableau, chiffres — dans l’ordre.","cta.btn":"Parcourir le flux complet","cta.fine":"Environ 20 secondes · pause ou sortie à tout moment","cta.disclaim":"Démonstration entièrement construite sur des données fictives. Ne reproduit aucune donnée, aucun processus ni aucun système d’un employeur."},"zh":{"lang.name":"中文","play":"播放演示","steps":"步","hero.sub":"选择订单类型，放入收到的任何文件——后面每一步、每份单据、每封邮件都已为你准备好。","hero.tag":"本地离线运行 · 不上传任何数据","me.role":"设计与开发","me.where":"批发运营 · 巴黎","shell.local":"本地运行 · 无需登录","shell.copilot":"Copilot","shell.choose":"选择模块","shell.env":"运行环境","shell.envv":"本地文件夹 · data<br>最后更新 12:40","shell.kick":"订单 · 销售 · 客户","shot.hint":"点击任一模块打开 · 关闭后可试下一个","mod.1":"订单管理","mod.2":"销售分析","mod.3":"客户管理","card.tx1":"从询价到发货计划，端到端。每一步都写明该做什么、该发给谁。","card.tx2":"同一批数据，按时间、市场、系列和价格带切换。角度一换，答案就不同。","card.tx3":"货压在哪里、哪家门店拉动了数字、为什么停在那里。","shell.s1":"进行中订单","shell.s2":"已结单","shell.s3":"超出约定时限","shell.s4":"Sell-in 记录","shot.cap":"<b>工具本身。</b>此处用虚构品牌和虚构数字重建——布局、三个模块和流程都是真实的。","fig.1":"批发客户","fig.2":"订单流程","fig.3":"一份 PDF 拆出的明细行","problem.eyebrow":"问题","problem.h2":"每张订单的格式都不一样。","problem.lede":"表头不同、顺序不同，有时根本没有价格列，还有一张是矩阵。而仓库只认一种格式。","doc.n1":"法文表头 · 门店代码藏在品名里","doc.n2":"<b>没有价格列</b> —— 价格在单独的价目表里","doc.n3":"<b>一张矩阵</b> —— 十二家门店横排成列","problem.steps":"定位 <b>→</b> 复制 <b>→</b> 粘贴<br>重复 <b>×40</b>","problem.cost":"每单，手工","problem.sheet":"标准订单表","problem.wh":"仓库","problem.empty":"没人填就一直是空的","b1.t":"从订单类型开始。","b1.n":"四种类型，四条不同的流程。选定一种，后面每一步、每份单据、每封邮件都随之确定。","b2.t":"来什么格式，读什么格式。","b2.n":"按列名和内容双重匹配。矩阵式订单展开成一家门店一行。","b3.t":"跟着步骤走。","b3.n":"每一步告诉你做什么、勾什么，并把邮件交到你手上——收件人和抄送都已填好。","b4.t":"追踪每一张未结订单。","b4.n":"每张订单的状态、停留天数和下一步动作。点一下就推进，上方计数同步更新。","b5.t":"读懂整个组合。","b5.n":"同一批订单数据，随时换维度重切——按系列、市场、产品线，或与往年对比。","b6.t":"管理客户，而不只是订单。","b6.n":"对每一家批发客户：库存在做什么、与所在市场相比如何、每家门店发生了什么，以及下一步该做什么。","intake.sl1":"一份常规文件","intake.sl2":"字段映射","intake.sl3":"订单表，然后是邮件","intake.drop":"客户的 PDF，41 行，法文表头","intake.dropsub":"不上传任何东西——演示在本地回放","intake.ok":"41 件 = PDF 上写明的 41 件","intake.mailtop":"邮件已就绪","intake.mailauto":"· 收件人、抄送和金额均已填好","intake.cc":"区域抄送名单","intake.note":"打开已填好的撰写窗口。不用找模板，也不用重建抄送名单。","intake.copy":"复制草稿","intake.copied":"已复制","intake.again":"再播放一次","intake.hint":"虚构文件，虚构价格。","intake.outlook":"在 Outlook 中打开","split.sl":"多门店矩阵","split.recv":"收到时的样子","split.after":"拆分之后","split.lines":"门店明细行","split.rows":"30+ 个货号中的第 1–8 行","split.cells":"400+ 个格子，60+ 个有数量","split.await":"等待拆分","split.each":"每家门店各自成单","split.ref":"各有单号","split.rec":"已对账","probe.sl":"当客户改了文件格式","probe.a":"文件本身","probe.a2":"留在本机","probe.b":"结构报告","probe.b2":"可以外发","probe.note":"格式一变就要改解析器——但没人需要看到数据才能改。探针只报告列名和每一列的<em>形态</em>，一个单元格的值都不输出。","flow.do":"做什么","flow.check":"勾什么","flow.send":"发送 —— 一键","board.tab1":"订单总表","board.tab2":"BO 台账","board.reset":"重置面板","board.note":"十六个状态，与订单总表一致。在第 03 块勾完某一步的最后一项，这里对应的订单就会前进一格。","bo.note":"订单总表是一张单一行，这里是一个货号一行——客户还差多少件没收到。滚动三个月以上的会被标出。清理台账只会归档当月快照，不会删除任何记录。","th.order":"订单","th.acct":"客户","th.type":"类型","th.status":"状态","th.days":"开启天数","th.next":"下一步","th.ordered":"已下单","th.shipped":"已发货","th.outstanding":"未交","th.carried":"已滚动","th.store":"门店","th.cover":"存销比","th.contrib":"贡献","th.what":"发生了什么","acct.sl1":"发生了什么，发生在哪","acct.attr":"是哪家门店拉动了数字","acct.sl2":"原因 —— 先选门店，再选你认为的原因","acct.sl3":"我接下来会做什么","acct.k1":"Sell-in 件数","acct.k2":"Sell-out 件数","acct.k3":"售罄率","acct.k4":"存销比（月）","acct.k5":"同比变化","acct.market":"市场","acct.nostock":"未导入库存","acct.vs":"与所在市场相比","acct.accounts":"家客户","acct.this":"该客户","acct.average":"平均","acct.diff":"个百分点的差距。","acct.notice":"<b>%s 从不发送库存文件。</b>它的售罄率显示「—」而不是 0%，因为「没导入」和「卖不动」完全是两回事。下方任何需要库存数据的原因都已标出，无法验证。","acct.range":"%s 变化中各门店占的百分点","acct.nocause":"这家门店没有记录候选原因。","acts.picked":"根据你选择的原因","acts.account":"客户层面","src.data":"来自数据","src.log":"来自门店记录","src.market":"来自市场","src.need":"需要库存文件","dg0t":"货在积压，不是在卖。","dg0d":"售罄率 39%，市场为 47%；按当前速度还有 5.8 个月的库存。","dg0c":"规则：售罄率 < 45% 且存销比 > 5 个月","dg1t":"大部分由一家门店造成。","dg1d":"18.0 个百分点的跌幅里，Ashgrove 一家就占 11.4，而 Belvedere 还在涨。这是门店问题，不是客户问题。","dg1c":"规则：单店占总变化 > 50%","acct.mktread":"十八个百分点里有十二个是客户自身的，不是市场的。","acct.a0":"去催 Dunmore 的库存文件——没有它，这个客户四分之一的情况无法判断。","wh.0":"装修停业六周，但发货一直没停","wh.1":"三月资深销售离职","wh.2":"五月私人客户晚宴，一周卖出四十件","wh.3":"这家门店从未发来过库存文件","cz.0.stock.l":"发货跑在了需求前面","cz.0.stock.e":"存销比 7.2 个月，客户平均为 3.4。","cz.0.stock.a":["九月的配货先扣住，等存销比降到 5 个月以下。","把滞销款调给缺货的门店。"],"cz.0.closed.l":"装修停业六周","cz.0.closed.e":"四月到五月中，开季前就已记录在案。","cz.0.closed.a":["按 Ashgrove 实际营业的月份重算基线。"],"cz.1.staff.l":"资深销售离职","cz.1.staff.e":"三月离职，到八月仍未补人。","cz.1.staff.a":["十一月旺季前，在这家店复制 Belvedere 的晚宴形式。"],"cz.1.stock.l":"库存在积压","cz.1.stock.e":"存销比 6.4 个月，售罄率 36%。","cz.1.stock.a":["暂停一个周期的补货。"],"cz.2.event.l":"五月的晚宴奏效了","cz.2.event.e":"之后一周卖出四十件。","cz.2.event.a":["把这个形式复制到 Crestwood 和 Dunmore。"],"cz.3.stock.l":"库存这个假设无法验证","cz.3.stock.e":"这家门店没有库存快照，所以售罄率显示「—」而不是 0%。","cz.3.stock.a":[],"cz.3.noevent.l":"今年没有活动","cz.3.noevent.e":"去年同期办过一场 trunk show。","cz.3.noevent.a":["把 Dunmore 排进第四季度的活动日程。"],"v0t":"按系列","v0h":"销量集中在一个系列。","v0p":"十二个月的发货件数。长尾决定下一季的组货。","v0k0":"发货件数","v0k1":"来自单一系列","v1t":"按市场","v1h":"Sell-in 不等于 sell-out。","v1p":"<em>Sell-in</em> 是我们发出去的，<em>Sell-out</em> 是客户真正卖掉的。差额说明货压在谁手里。","v1k0":"平均售罄率","v1k1":"仍压在库存","v2t":"按产品线","v2h":"销量和金额指向不同。","v2p":"Core 撑件数，Fine 撑金额。同一批数据，换个方式分组。","v2k0":"件数最高","v2k1":"金额最高","v3t":"年度对比","v3h":"节奏每年重复。","v3p":"三年，单位千欧元。八月的低谷和十一月的高峰每年都来。","v3k0":"2025 对 2024","v3k1":"每年的峰值","chart.sellin":"Sell-in","chart.sellout":"Sell-out","chart.st":"售罄率","ov.back":"← 上一步","ov.pause":"暂停","ov.play":"播放","ov.next":"下一步 →","ov.close":"关闭 · Esc","ov.replay":"从头播放全部六步","ov.close2":"关闭","ov.lnk":"本地工具——此处未上传任何内容。","sc0":"选择订单类型","sc1":"读取收到的文件","sc2":"跟着步骤走，发出邮件","sc3":"追踪订单","sc4":"读懂整体组合","sc5":"逐店管理客户","cta.eyebrow":"完整演示","cta.h2":"看它完整跑一遍。","cta.sub":"订单类型、文件、步骤、面板、数据 —— 依次展开。","cta.btn":"体验完整流程","cta.fine":"约 20 秒 · 随时可暂停或退出","cta.disclaim":"本演示完全基于虚构数据构建，不复现任何雇主的数据、流程或系统。"}};
+var lang='en';
+function t(k){ var d=T[lang]||T.en; return d[k]!==undefined?d[k]:(T.en[k]!==undefined?T.en[k]:k); }
+function ta(k){ var v=t(k); return Object.prototype.toString.call(v)==='[object Array]'?v:[]; }
+function applyLang(){
+  document.documentElement.lang = lang==='zh'?'zh-Hans':lang;
+  qa('[data-t]').forEach(function(el){ el.innerHTML=t(el.getAttribute('data-t')); });
+  qa('.langbar button').forEach(function(b){
+    b.setAttribute('aria-pressed', String(b.getAttribute('data-lang')===lang));
+  });
+  if(typeof rTypes==='function'){ rTypes(); rRail(); rStep(); }
+  if(typeof rBoard==='function'){ rBoard(); }
+  if(typeof rBo==='function'){ rBo(); }
+  if(typeof rAn==='function'){ rAn(); }
+  if(typeof rAcct==='function'){ rAcct(); }
+  if(typeof ovPP!=='undefined' && ovPP){ ovPP.textContent = playing?t('ov.pause'):t('ov.play'); }
+  if(typeof ov!=='undefined' && ov && !ov.hidden && typeof SCENES!=='undefined'){
+    var n=cur-lo+1,total=hi-lo+1;
+    ovCap.innerHTML='<b>'+n+' / '+total+'</b> '+(modLabel?esc(modLabel)+' — ':'')+t('sc'+cur);
+  }
+}
+function setLang(l){
+  lang=l;
+  try{ localStorage.setItem('wocLang',l); }catch(e){}
+  applyLang();
+}
+
 
 /* ---------- reveal ---------- */
 if('IntersectionObserver' in window){
@@ -1244,7 +1293,7 @@ q('#mailLink').setAttribute('href', outlook(
 q('#copyBtn').addEventListener('click',function(){
   var t='Subject: Shipment plan — Atelier Verrier — PO 4471\n\n'+q('#mb').textContent.trim();
   var b=this;
-  var ok=function(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy draft';},1600); };
+  var ok=function(){ b.textContent=t('intake.copied'); setTimeout(function(){b.textContent=t('intake.copy');},1600); };
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,ok);}else{ok();}
 });
 var rz; window.addEventListener('resize',function(){
@@ -1412,7 +1461,7 @@ function rTypes(){
       '<b>'+esc(w.n)+'</b><span class="cnt">'+esc(w.c)+'</span><span class="why">'+esc(w.why)+'</span></button>';
   }).join('');
   typesNote.textContent='Selected: '+WF[cw].n+' — '+WF[cw].s.length+' steps. Block 03 below follows this choice.';
-  flowName.textContent=WF[cw].n+' — '+WF[cw].s.length+' steps';
+  flowName.textContent=WF[cw].n+' — '+WF[cw].s.length+' '+t('steps');
 }
 function rRail(){
   var w=WF[cw];
@@ -1615,10 +1664,10 @@ function pairs(d){
   });
   var ly=d.length*rh+18,lf=nar()?13:12.5;
   s+='<rect x="'+g+'" y="'+ly+'" width="16" height="8" fill="#403A38" opacity=".35"/>'+
-     '<text x="'+(g+22)+'" y="'+(ly+8)+'" fill="#6E6660" font-size="'+lf+'">Sell-in</text>'+
+     '<text x="'+(g+22)+'" y="'+(ly+8)+'" fill="#6E6660" font-size="'+lf+'">'+esc(t('chart.sellin'))+'</text>'+
      '<rect x="'+(g+92)+'" y="'+ly+'" width="16" height="8" fill="#AC202D"/>'+
-     '<text x="'+(g+114)+'" y="'+(ly+8)+'" fill="#6E6660" font-size="'+lf+'">Sell-out</text>'+
-     '<text x="'+(W-2)+'" y="'+(ly+8)+'" text-anchor="end" fill="#6E6660" font-size="'+lf+'">Sell-through</text>';
+     '<text x="'+(g+114)+'" y="'+(ly+8)+'" fill="#6E6660" font-size="'+lf+'">'+esc(t('chart.sellout'))+'</text>'+
+     '<text x="'+(W-2)+'" y="'+(ly+8)+'" text-anchor="end" fill="#6E6660" font-size="'+lf+'">'+esc(t('chart.st'))+'</text>';
   return '<svg viewBox="0 0 '+W+' '+(H+12)+'" role="img" aria-label="sell-in against sell-out">'+s+'</svg>';
 }
 function lineChart(d){
@@ -1647,11 +1696,11 @@ function lineChart(d){
 function rAn(){
   var v=V[ai];
   atabs.innerHTML=V.map(function(x,i){
-    return '<button class="atab'+(i===ai?' on':'')+'" role="tab" aria-selected="'+(i===ai)+'" data-i="'+i+'">'+esc(x.t)+'</button>';
+    return '<button class="atab'+(i===ai?' on':'')+'" role="tab" aria-selected="'+(i===ai)+'" data-i="'+i+'">'+esc(t('v'+i+'t'))+'</button>';
   }).join('');
   achart.innerHTML = v.ty==='bar'?bars(v.d,v.u) : v.ty==='pair'?pairs(v.d) : lineChart(v.d);
-  aH.textContent=v.h; aP.innerHTML=v.p;
-  aK.innerHTML=v.k.map(function(x){return '<div><p class="n">'+esc(x[0])+'</p><p class="l">'+esc(x[1])+'</p></div>';}).join('');
+  aH.textContent=t('v'+ai+'h'); aP.innerHTML=t('v'+ai+'p');
+  aK.innerHTML=v.k.map(function(x,j){return '<div><p class="n">'+esc(x[0])+'</p><p class="l">'+esc(t('v'+ai+'k'+j))+'</p></div>';}).join('');
   if(reduced) return;
   requestAnimationFrame(function(){
     qa('.gb',achart).forEach(function(r){r.style.transform='scaleX(1)';});
@@ -1733,35 +1782,33 @@ function rAcct(){
 
   var gaps=a.rows.filter(function(r){ return r[3]===null; });
   acctNotice.innerHTML = gaps.length
-    ? '<div class="notice"><b>'+esc(gaps[0][0])+' sends no stock file.</b> '+
-      'Its sell-through shows — rather than 0%, because a missing import is not the same as a store that has stopped selling. '+
-      'Any cause needing stock data is marked below and cannot be tested.</div>'
+    ? '<div class="notice">'+t('acct.notice').replace('%s',esc(gaps[0][0]))+'</div>'
     : '';
 
   acctKpi.innerHTML=
-    '<div class="kpi1">'+num(a.kpi.si)+'<span>Sell-in, pieces</span></div>'+
-    '<div class="kpi1">'+num(a.kpi.so)+'<span>Sell-out, pieces</span></div>'+
-    '<div class="kpi1">'+num(a.kpi.st,'%','No stock file imported')+'<span>Sell-through</span>'+
-      (a.kpi.st===null?'<i>stock not imported</i>':'<i>market '+a.mkt.st+'%</i>')+'</div>'+
-    '<div class="kpi1">'+num(a.kpi.cov,' mo','No stock file imported')+'<span>Months of cover</span></div>'+
+    '<div class="kpi1">'+num(a.kpi.si)+'<span>'+esc(t('acct.k1'))+'</span></div>'+
+    '<div class="kpi1">'+num(a.kpi.so)+'<span>'+esc(t('acct.k2'))+'</span></div>'+
+    '<div class="kpi1">'+num(a.kpi.st,'%',t('acct.nostock'))+'<span>'+esc(t('acct.k3'))+'</span>'+
+      (a.kpi.st===null?'<i>'+esc(t('acct.nostock'))+'</i>':'<i>'+esc(t('acct.market'))+' '+a.mkt.st+'%</i>')+'</div>'+
+    '<div class="kpi1">'+num(a.kpi.cov,' mo',t('acct.nostock'))+'<span>'+esc(t('acct.k4'))+'</span></div>'+
     '<div class="kpi1"><b class="'+(a.kpi.yoy<0?'down':'')+'">'+signed(a.kpi.yoy)+'%</b>'+
-      '<span>Year on year</span><i>'+esc(a.range)+'</i></div>';
+      '<span>'+esc(t('acct.k5'))+'</span><i>'+esc(a.range)+'</i></div>';
 
   /* market comparison */
   var mmax=Math.max(Math.abs(a.kpi.yoy),Math.abs(a.mkt.yoy))||1;
   acctMkt.innerHTML='<div class="mkt">'+
-    '<p class="mkt-h">Against its market — <b>'+esc(a.mkt.name)+'</b>, '+a.mkt.peers+' accounts</p>'+
+    '<p class="mkt-h">'+esc(t('acct.vs'))+' — <b>'+esc(a.mkt.name)+'</b>, '+a.mkt.peers+' '+esc(t('acct.accounts'))+'</p>'+
     '<div class="mkt-g">'+
-      '<div class="mkt-i"><span>This account</span><div class="mbar"><i style="width:'+
+      '<div class="mkt-i"><span>'+esc(t('acct.this'))+'</span><div class="mbar"><i style="width:'+
         (Math.abs(a.kpi.yoy)/mmax*100)+'%"></i></div><b>'+signed(a.kpi.yoy)+'%</b></div>'+
-      '<div class="mkt-i"><span>'+esc(a.mkt.name)+' average</span><div class="mbar mut"><i style="width:'+
+      '<div class="mkt-i"><span>'+esc(a.mkt.name)+' '+esc(t('acct.average'))+'</span><div class="mbar mut"><i style="width:'+
         (Math.abs(a.mkt.yoy)/mmax*100)+'%"></i></div><b>'+signed(a.mkt.yoy)+'%</b></div>'+
     '</div>'+
-    '<p class="mkt-n"><b>'+Math.abs(a.kpi.yoy-a.mkt.yoy).toFixed(1)+' points</b> of difference. '+esc(a.mktRead)+'</p>'+
+    '<p class="mkt-n"><b>'+Math.abs(a.kpi.yoy-a.mkt.yoy).toFixed(1)+'</b> '+esc(t('acct.diff'))+' '+esc(t('acct.mktread'))+'</p>'+
   '</div>';
 
-  acctDiag.innerHTML=a.diag.map(function(d){
-    return '<div class="dg"><b>'+esc(d.t)+'</b><p>'+esc(d.d)+'</p><code>'+esc(d.c)+'</code></div>';
+  acctDiag.innerHTML=a.diag.map(function(d,i){
+    return '<div class="dg"><b>'+esc(t('dg'+i+'t'))+'</b><p>'+esc(t('dg'+i+'d'))+'</p><code>'+esc(t('dg'+i+'c'))+'</code></div>';
   }).join('');
 
   acctTl.innerHTML=a.tl.map(function(t){
@@ -1779,17 +1826,17 @@ function rAcct(){
       '<span class="who">'+esc(t[1])+'</span><p>'+esc(t[2])+'</p></div>';
   }).join('');
 
-  attrRange.textContent='Points of the '+signed(a.kpi.yoy)+'% change, by store';
+  attrRange.textContent=t('acct.range').replace('%s',signed(a.kpi.yoy)+'%');
   acctChart.innerHTML=attrBars(a.rows);
 
-  acctRows.innerHTML=a.rows.map(function(r){
+  acctRows.innerHTML=a.rows.map(function(r,i){
     var agg=/other stores/.test(r[0]);
     return '<tr'+(agg?' class="agg"':'')+'><td>'+esc(r[0])+'</td>'+
       '<td class="n">'+r[1]+'</td><td class="n">'+r[2]+'</td>'+
       (r[3]===null?'<td class="n dash">—</td>':'<td class="n">'+r[3]+'%</td>')+
       (r[4]===null?'<td class="n dash">—</td>':'<td class="n">'+r[4]+' mo</td>')+
       '<td class="pp'+(r[5]<0?' neg':'')+'">'+signed(r[5])+'</td>'+
-      '<td class="next">'+esc(r[6])+'</td></tr>';
+      '<td class="next">'+esc(t('wh.'+i))+'</td></tr>';
   }).join('');
 
   rWhy();
@@ -1814,10 +1861,11 @@ function rWhy(){
   var cs=r[7]||[];
   whyCauses.innerHTML = cs.length ? cs.map(function(c){
     var on=!!picked[causeKey(ws,c.id)];
+    var kk='cz.'+ws+'.'+c.id, src={'From the data':'src.data','From the store log':'src.log','From the market':'src.market','Needs the stock file':'src.need'}[c.k]||'';
     return '<button class="cause" type="button" data-c="'+esc(c.id)+'" aria-pressed="'+on+'"'+(c.blocked?' disabled':'')+'>'+
-      '<span class="top"><span class="bx2"></span><span class="src">'+esc(c.k)+'</span></span>'+
-      '<b>'+esc(c.l)+'</b><p>'+esc(c.e)+'</p></button>';
-  }).join('') : '<p class="why-none">No candidate causes recorded for this store.</p>';
+      '<span class="top"><span class="bx2"></span><span class="src">'+esc(src?t(src):c.k)+'</span></span>'+
+      '<b>'+esc(t(kk+'.l'))+'</b><p>'+esc(t(kk+'.e'))+'</p></button>';
+  }).join('') : '<p class="why-none">'+esc(t('acct.nocause'))+'</p>';
   rActs();
 }
 function rActs(){
@@ -1825,14 +1873,14 @@ function rActs(){
   storeRows().forEach(function(r,i){
     (r[7]||[]).forEach(function(c){
       if(!picked[causeKey(i,c.id)]) return;
-      c.a.forEach(function(x){
+      ta('cz.'+i+'.'+c.id+'.a').forEach(function(x){
         out+='<li><span class="tag">'+esc(r[0].split(' ').slice(0,2).join(' '))+'</span>'+esc(x)+'</li>';
       });
     });
   });
-  acctActs.innerHTML = (out?'<li class="lvl">From the causes you picked</li>'+out:'') +
-    '<li class="lvl">Account level</li>' +
-    a.acts.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
+  acctActs.innerHTML = (out?'<li class="lvl">'+esc(t('acts.picked'))+'</li>'+out:'') +
+    '<li class="lvl">'+esc(t('acts.account'))+'</li>' +
+    '<li>'+esc(t('acct.a0'))+'</li>';
 }
 whyStores.addEventListener('click',function(e){
   var b=e.target.closest('.schip'); if(!b) return;
@@ -1946,7 +1994,7 @@ function goScene(i){
   cur=i;
   var sc=SCENES[i],n=cur-lo+1,total=hi-lo+1;
   ov.classList.remove('ended');
-  ovCap.innerHTML='<b>'+n+' / '+total+'</b> '+(modLabel?esc(modLabel)+' — ':'')+sc.txt;
+  ovCap.innerHTML='<b>'+n+' / '+total+'</b> '+(modLabel?esc(modLabel)+' — ':'')+t('sc'+cur);
   var node=sc.node(); home(node);
   ovStage.innerHTML=''; ovStage.appendChild(node); ovStage.scrollTop=0;
   requestAnimationFrame(sc.run);
@@ -1959,19 +2007,19 @@ function goScene(i){
   if(playing) resume();
 }
 function resume(){
-  playing=true; ovPP.textContent='Pause'; ovPP.setAttribute('aria-pressed','false');
+  playing=true; ovPP.textContent=t('ov.pause'); ovPP.setAttribute('aria-pressed','false');
   t0=Date.now(); fillSeg(remain);
   timer=setTimeout(function(){ goScene(cur+1); }, remain);
 }
 function pause(){
-  playing=false; ovPP.textContent='Play'; ovPP.setAttribute('aria-pressed','true');
+  playing=false; ovPP.textContent=t('ov.play'); ovPP.setAttribute('aria-pressed','true');
   clearTimeout(timer);
   remain=Math.max(400, remain-(Date.now()-t0));
   freezeSeg();
 }
 function endShow(){
   clearTimeout(timer); playing=false;
-  ovPP.textContent='Play'; ovPP.setAttribute('aria-pressed','true');
+  ovPP.textContent=t('ov.play'); ovPP.setAttribute('aria-pressed','true');
   segs.forEach(function(s){ s.firstChild.style.transition='none'; s.firstChild.style.width='100%'; });
   ov.classList.add('ended');
   q('#ovReplay').focus();
@@ -1984,7 +2032,7 @@ function startShow(from,autoplay,to,label){
   buildSegs();
   ov.classList.remove('ended');
   playing = (autoplay===false) ? false : !reduced;
-  ovPP.textContent=playing?'Pause':'Play';
+  ovPP.textContent=playing?t('ov.pause'):t('ov.play');
   ovPP.setAttribute('aria-pressed',String(!playing));
   ovPP.style.display = (lo===hi) ? 'none' : '';     /* one-scene module: nothing to play */
   goScene(lo);
@@ -2035,6 +2083,17 @@ document.addEventListener('keydown',function(e){
     else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
   }
 });
+
+/* language: ?lang= wins, then a remembered choice, then English */
+(function(){
+  var qp=(location.search.match(/[?&]lang=(en|fr|zh)/)||[])[1],saved=null;
+  try{ saved=localStorage.getItem('wocLang'); }catch(e){}
+  lang = qp || (saved==='fr'||saved==='zh'||saved==='en'?saved:'en');
+  qa('.langbar button').forEach(function(b){
+    b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); });
+  });
+  applyLang();
+})();
 })();
 </script>
 </body>
