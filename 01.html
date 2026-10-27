@@ -69,6 +69,25 @@ svg{max-width:100%}
 .drop:hover .cue,.btn-sp:hover{background:var(--red);border-color:var(--red)}
 
 /* ---------------- hero ---------------- */
+.hero-top{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,48px);align-items:start}
+@media (min-width:900px){.hero-top{grid-template-columns:minmax(0,1fr) 236px}}
+.card-me{border-top:2px solid var(--ink);padding-top:16px}
+@media (min-width:900px){.card-me{justify-self:end;width:100%}}
+.me-role{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.me-name{margin-top:8px;font-size:21px;font-weight:600;line-height:1.2}
+.me-where{margin-top:5px;font-size:13px;color:var(--ink-3);line-height:1.5}
+.me-link{
+  margin-top:16px;display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--ink);padding:10px 16px;font-size:13px;font-weight:500;
+  text-decoration:none;color:var(--ink);background:transparent;
+  transition:background .3s ease,color .3s ease,border-color .3s ease;
+}
+.me-link:hover,.me-link:focus-visible{background:var(--ink);color:#fff}
+.me-link .arw{display:inline-block;transition:transform .3s ease}
+.me-link:hover .arw,.me-link:focus-visible .arw{transform:translateX(3px)}
+.me-mail{display:block;margin-top:12px;font-size:12.5px;color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;width:fit-content}
+.me-mail:hover{color:var(--red);border-color:var(--red)}
+
 .hero{padding-block:clamp(64px,10vh,110px) clamp(44px,6vw,72px)}
 .mark{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
 .h1{margin-top:18px;font-size:clamp(34px,6.4vw,68px);line-height:1.08;font-weight:600;letter-spacing:-.01em}
@@ -86,6 +105,54 @@ svg{max-width:100%}
   .fig{border-left:0;padding:14px 0;border-top:1px solid var(--line)}
   .fig:first-child{border-top:0}
 }
+
+/* ---------------- product shell in the hero ---------------- */
+.shot{margin:clamp(34px,5vw,56px) 0 0;padding:0}
+.shot-f{border:1px solid var(--line);background:var(--card);box-shadow:0 20px 50px -40px rgba(26,23,24,.7)}
+.shot-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--line);background:#F6F3EE}
+.shot-bar i{width:8px;height:8px;border-radius:50%;background:#D9D2C7;display:block}
+.shot-bar span{margin-left:8px;font-size:12px;color:var(--ink-3)}
+.shot-bar em{margin-left:auto;font-style:normal;font-size:11.5px;color:var(--ink-3)}
+.shot-body{display:grid;grid-template-columns:1fr}
+@media (min-width:820px){.shot-body{grid-template-columns:200px 1fr}}
+.shot-side{display:none;border-right:1px solid var(--line);padding:16px 16px 18px;background:#FCFBF9}
+@media (min-width:820px){.shot-side{display:block}}
+.shot-side .wm{font-size:14px;font-weight:600;letter-spacing:.04em}
+.shot-side .wm span{color:var(--red)}
+.shot-side .sub{margin-top:3px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.shot-side hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.shot-side .lbl{font-size:11.5px;color:var(--ink-3);margin-bottom:9px}
+.shot-nav{display:grid;gap:3px}
+.shot-nav b{font-size:12.5px;font-weight:400;padding:6px 8px;color:var(--ink-2)}
+.shot-nav b.on{background:var(--red-bg);color:var(--red);font-weight:600;border-left:2px solid var(--red)}
+.shot-side .env{margin-top:16px;font-size:11.5px;line-height:1.6;color:var(--ink-3)}
+.shot-side .env b{display:block;color:var(--ink-2);font-weight:600}
+.shot-main{padding:clamp(18px,3vw,30px) clamp(16px,3vw,28px) clamp(20px,3vw,28px);text-align:center}
+.shot-main .mk{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.shot-main .mk span{color:var(--red)}
+.shot-main h3{margin-top:12px;font-size:clamp(19px,2.6vw,27px);font-weight:600;line-height:1.2}
+.shot-main .kick{margin-top:7px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.shot-main .dash{width:34px;height:2px;background:var(--red);margin:12px auto 0}
+.shot-cards{margin-top:clamp(16px,2.4vw,24px);display:grid;grid-template-columns:1fr;gap:12px;text-align:left}
+@media (min-width:620px){.shot-cards{grid-template-columns:repeat(3,1fr)}}
+.sc{border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.sc:hover,.sc:focus-visible{border-color:var(--red);transform:translateY(-2px);box-shadow:0 10px 24px -18px rgba(26,23,24,.6)}
+.sc-in{padding:14px 14px 16px;flex:1 1 auto;display:block}
+.sc .tx{display:block;margin-top:10px;font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.sc .ar{display:inline-block;transition:transform .25s ease}
+.sc:hover .ar,.sc:focus-visible .ar{transform:translateY(2px)}
+.sc .no{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;color:var(--red)}
+.sc b{display:block;margin-top:8px;font-size:15px;font-weight:600}
+.sc .en{display:block;margin-top:4px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.sc p{margin-top:10px;font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.sc .go{background:var(--red);color:#fff;padding:9px;text-align:center;font-size:12.5px;font-weight:500;display:block}
+.shot-stats{margin-top:clamp(16px,2.4vw,24px);padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (min-width:620px){.shot-stats{grid-template-columns:repeat(4,1fr)}}
+.shot-stats div span{display:block;font-size:11.5px;color:var(--ink-3)}
+.shot-stats div b{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500}
+.shot-cap{margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+.shot-cap b{color:var(--ink-2);font-weight:600}
 
 /* ---------------- act I ---------------- */
 .act-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 40px}
@@ -123,8 +190,11 @@ svg{max-width:100%}
   .axis{height:44px}
 }
 
+@keyframes land{from{background:var(--red-bg)}to{background:transparent}}
+.block.landed{animation:land 1.6s ease-out 1}
+
 /* ---------------- act II blocks ---------------- */
-.block{padding-top:clamp(40px,5vw,72px);border-top:1px solid var(--line);margin-top:clamp(40px,5vw,72px)}
+.block{scroll-margin-top:24px;padding-top:clamp(40px,5vw,72px);border-top:1px solid var(--line);margin-top:clamp(40px,5vw,72px)}
 .block:first-of-type{border-top:0;margin-top:clamp(24px,3vw,40px);padding-top:0}
 .b-head{display:flex;align-items:baseline;gap:16px}
 .b-no{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:var(--red)}
@@ -547,10 +617,90 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
 <!-- ===================== HERO ===================== -->
 <header class="section hero">
   <div class="wrap">
-    <p class="mark">Maison Lumen — Wholesale Operations</p>
-    <h1 class="h1">Wholesale<br><span>Order Copilot</span></h1>
-    <p class="hero-sub">Pick the order type, drop in whatever file arrives, and every step, document and email is prepared for you.</p>
-    <p class="hero-tag">Runs offline · nothing uploaded</p>
+    <div class="hero-top">
+      <div class="hero-lede">
+        <p class="mark">Maison Lumen — Wholesale Operations</p>
+        <h1 class="h1">Wholesale<br><span>Order Copilot</span></h1>
+        <p class="hero-sub">Pick the order type, drop in whatever file arrives, and every step, document and email is prepared for you.</p>
+        <p class="hero-tag">Runs offline · nothing uploaded</p>
+      </div>
+
+      <aside class="card-me">
+        <p class="me-role">Designed &amp; built by</p>
+        <p class="me-name">Liyi&nbsp;Gao</p>
+        <p class="me-where">Wholesale operations · Paris</p>
+        <a class="me-link" href="https://www.linkedin.com/in/liyi-gao" target="_blank" rel="noopener">
+          LinkedIn <span class="arw" aria-hidden="true">→</span>
+        </a>
+        <a class="me-mail" href="mailto:liyi.gao.dm@gmail.com">liyi.gao.dm@gmail.com</a>
+      </aside>
+    </div>
+
+
+    <figure class="shot" data-r>
+      <div class="shot-f">
+        <div class="shot-bar">
+          <i></i><i></i><i></i>
+          <span>Wholesale Order Copilot</span>
+          <em>running locally · no sign-in</em>
+        </div>
+        <div class="shot-body">
+          <aside class="shot-side">
+            <p class="wm">MAISON <span>LUMEN</span></p>
+            <p class="sub">Copilot</p>
+            <hr>
+            <p class="lbl">Choose a module</p>
+            <nav class="shot-nav">
+              <b class="on">Order management</b>
+              <b>Sales analysis</b>
+              <b>Account management</b>
+            </nav>
+            <hr>
+            <p class="env"><b>Environment</b>Local folder · data<br>Last updated 12:40</p>
+          </aside>
+          <div class="shot-main">
+            <p class="mk">Maison <span>Lumen</span></p>
+            <h3>International Wholesale Copilot</h3>
+            <p class="kick">Order · Sales · Client</p>
+            <div class="dash" aria-hidden="true"></div>
+            <p class="shot-hint">Click a module to open it · close it and try the next one</p>
+            <div class="shot-cards" id="shotCards">
+              <a class="sc" href="#mod-order" data-from="0" data-to="3">
+                <span class="sc-in">
+                  <span class="no">I</span><b>Order management</b>
+                  <span class="en">Order management</span>
+                  <span class="tx">End to end, from enquiry to shipment plan. Every step says what to do and who to write to.</span>
+                </span>
+                <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
+              </a>
+              <a class="sc" href="#mod-sales" data-from="4" data-to="4">
+                <span class="sc-in">
+                  <span class="no">II</span><b>Sales analysis</b>
+                  <span class="en">Annual report dashboard</span>
+                  <span class="tx">One dataset across time, market, collection and price band. The angle changes the answer.</span>
+                </span>
+                <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
+              </a>
+              <a class="sc" href="#mod-account" data-from="5" data-to="5">
+                <span class="sc-in">
+                  <span class="no">III</span><b>Account management</b>
+                  <span class="en">Account management</span>
+                  <span class="tx">Where the stock sits, which store moved the number, and why it stopped there.</span>
+                </span>
+                <span class="go">Open <span class="ar" aria-hidden="true">↓</span></span>
+              </a>
+            </div>
+            <div class="shot-stats">
+              <div><span>Orders in progress</span><b>7</b></div>
+              <div><span>Closed</span><b>41</b></div>
+              <div><span>Ageing past threshold</span><b>3</b></div>
+              <div><span>Sell-in records</span><b>1,940</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="shot-cap"><b>The tool itself.</b> Rebuilt here with a fictional maison and fictional figures — the layout, the three modules and the flow are the real ones. Each module jumps to its section below.</figcaption>
+    </figure>
 
     <div class="figs" data-r>
       <div class="fig"><b>20+</b><span>Wholesale accounts</span></div>
@@ -633,7 +783,7 @@ tfoot .l{font-size:12px;color:var(--ink-3);font-weight:400}
   <div class="wrap">
 
     <!-- 01 · order type -->
-    <div class="block">
+    <div class="block" id="mod-order">
       <div class="b-head" data-r>
         <span class="b-no">01</span>
         <div>
@@ -879,7 +1029,7 @@ Wholesale Operations</p>
     </div>
 
     <!-- 05 · portfolio dashboard -->
-    <div class="block">
+    <div class="block" id="mod-sales">
       <div class="b-head" data-r>
         <span class="b-no">05</span>
         <div>
@@ -899,7 +1049,7 @@ Wholesale Operations</p>
     </div>
 
     <!-- 06 · account management -->
-    <div class="block">
+    <div class="block" id="mod-account">
       <div class="b-head" data-r>
         <span class="b-no">06</span>
         <div>
@@ -977,7 +1127,7 @@ Wholesale Operations</p>
   <div class="ov-bar" id="ovBar" role="group" aria-label="Go to step"></div>
   <div class="ov-stage" id="ovStage"></div>
   <div class="ov-end">
-    <button class="ov-skip" id="ovReplay" type="button">Replay from the start</button>
+    <button class="ov-skip" id="ovReplay" type="button">Play all six from the start</button>
     <button class="ov-skip" id="ovClose" type="button">Close</button>
     <span class="lnk">Built as a local tool — nothing here was uploaded.</span>
   </div>
@@ -1701,6 +1851,18 @@ ws=defaultStore();
 rAcct();
 var arz2; window.addEventListener('resize',function(){clearTimeout(arz2);arz2=setTimeout(rAcct,240);});
 
+/* module cards jump to their section, with a brief flash on arrival */
+qa('.sc').forEach(function(card){
+  card.addEventListener('click',function(){
+    var t=q(card.getAttribute('href'));
+    if(!t||reduced) return;
+    t.classList.remove('landed');
+    void t.offsetWidth;
+    t.classList.add('landed');
+    setTimeout(function(){ t.classList.remove('landed'); },1700);
+  });
+});
+
 /* ================= sticky CTA ================= */
 var sticky=q('#sticky'),act1=q('#act1'),ctaSec=q('#cta'),ctaBtn=q('#ctaBtn');
 var pastAct1=false,atCta=false;
@@ -1732,16 +1894,22 @@ var SCENES=[
    run:function(){ ws=defaultStore(); rAcct(); }}
 ];
 
-(function buildSegs(){
-  ovBar.innerHTML=SCENES.map(function(s,i){
-    return '<button class="ov-seg" data-i="'+i+'" type="button" aria-label="Step '+s.n+' — '+esc(s.txt)+'"><i></i></button>';
-  }).join('');
+/* the overlay plays a RANGE of scenes: a module plays only its own,
+   the CTA plays all six. lo/hi are absolute scene indexes. */
+var lo=0,hi=SCENES.length-1,modLabel='';
+function buildSegs(){
+  ovBar.innerHTML='';
+  for(var i=lo;i<=hi;i++){
+    ovBar.innerHTML+='<button class="ov-seg" data-i="'+i+'" type="button" aria-label="Step '+
+      (i-lo+1)+' of '+(hi-lo+1)+' — '+esc(SCENES[i].txt)+'"><i></i></button>';
+  }
   segs=qa('.ov-seg',ovBar);
-  ovBar.addEventListener('click',function(e){
-    var b=e.target.closest('.ov-seg'); if(!b) return;
-    goScene(+b.getAttribute('data-i'));
-  });
-})();
+}
+ovBar.addEventListener('click',function(e){
+  var b=e.target.closest('.ov-seg'); if(!b) return;
+  goScene(+b.getAttribute('data-i'));
+});
+function seg(i){ return segs[i-lo]; }
 function home(node){
   for(var i=0;i<homes.length;i++){ if(homes[i][0]===node) return; }
   homes.push([node,node.parentNode,node.nextSibling]);
@@ -1751,7 +1919,8 @@ function allHome(){
   homes=[]; ovStage.innerHTML='';
 }
 function paintSegs(){
-  segs.forEach(function(s,i){
+  segs.forEach(function(s,k){
+    var i=lo+k;
     s.setAttribute('aria-current', i===cur?'true':'false');
     var f=s.firstChild;
     if(i!==cur){ f.style.transition='none'; f.style.width = i<cur ? '100%':'0%'; }
@@ -1759,34 +1928,34 @@ function paintSegs(){
 }
 function fillSeg(ms){
   if(reduced) return;
-  var f=segs[cur].firstChild;
-  var pw=segs[cur].getBoundingClientRect().width||1;
+  var el=seg(cur); if(!el) return;
+  var f=el.firstChild,pw=el.getBoundingClientRect().width||1;
   var done=f.getBoundingClientRect().width/pw;
   f.style.transition='none'; f.style.width=(done*100)+'%';
   requestAnimationFrame(function(){ f.style.transition='width '+ms+'ms linear'; f.style.width='100%'; });
 }
 function freezeSeg(){
-  var f=segs[cur].firstChild;
-  var pw=segs[cur].getBoundingClientRect().width||1;
-  var w=f.getBoundingClientRect().width/pw;
-  f.style.transition='none'; f.style.width=(w*100)+'%';
+  var el=seg(cur); if(!el) return;
+  var f=el.firstChild,pw=el.getBoundingClientRect().width||1;
+  f.style.transition='none'; f.style.width=((f.getBoundingClientRect().width/pw)*100)+'%';
 }
 function goScene(i){
-  if(i<0) return;
-  if(i>=SCENES.length){ endShow(); return; }
+  if(i<lo) return;
+  if(i>hi){ endShow(); return; }
   clearTimeout(timer);
   cur=i;
-  var sc=SCENES[i];
+  var sc=SCENES[i],n=cur-lo+1,total=hi-lo+1;
   ov.classList.remove('ended');
-  ovCap.innerHTML='<b>'+sc.n+'</b> '+sc.txt;
+  ovCap.innerHTML='<b>'+n+' / '+total+'</b> '+(modLabel?esc(modLabel)+' — ':'')+sc.txt;
   var node=sc.node(); home(node);
   ovStage.innerHTML=''; ovStage.appendChild(node); ovStage.scrollTop=0;
   requestAnimationFrame(sc.run);
   remain=sc.ms;
-  segs[cur].firstChild.style.transition='none';
-  segs[cur].firstChild.style.width='0%';
+  var el=seg(cur);
+  if(el){ el.firstChild.style.transition='none'; el.firstChild.style.width='0%'; }
   paintSegs();
-  q('#ovPrev').disabled=(cur===0);
+  q('#ovPrev').disabled=(cur===lo);
+  q('#ovNext').disabled=(cur===hi);
   if(playing) resume();
 }
 function resume(){
@@ -1807,21 +1976,34 @@ function endShow(){
   ov.classList.add('ended');
   q('#ovReplay').focus();
 }
-function startShow(){
+function startShow(from,autoplay,to,label){
   if(homes.length) allHome();
-  cur=0; ov.classList.remove('ended');
-  segs.forEach(function(s){ s.firstChild.style.transition='none'; s.firstChild.style.width='0%'; });
-  playing=!reduced;
+  lo = from||0;
+  hi = (to===undefined||to===null) ? SCENES.length-1 : to;
+  modLabel = label||'';
+  buildSegs();
+  ov.classList.remove('ended');
+  playing = (autoplay===false) ? false : !reduced;
   ovPP.textContent=playing?'Pause':'Play';
   ovPP.setAttribute('aria-pressed',String(!playing));
-  goScene(0);
+  ovPP.style.display = (lo===hi) ? 'none' : '';     /* one-scene module: nothing to play */
+  goScene(lo);
 }
-function openOv(btn){
+function openOv(btn,from,autoplay,to,label){
   opener=btn||ctaBtn;
   ov.hidden=false; document.body.style.overflow='hidden';
   requestAnimationFrame(function(){ ov.classList.add('open'); });
-  startShow(); ovPP.focus();
+  startShow(from,autoplay,to,label);
+  (lo===hi ? q('#ovSkip') : ovPP).focus();
 }
+/* the three module cards in the hero open the overlay at their own section,
+   paused, so the visitor reads rather than watches */
+q('#shotCards').addEventListener('click',function(e){
+  var card=e.target.closest('.sc'); if(!card) return;
+  e.preventDefault();                       /* href stays as the no-JS fallback */
+  openOv(card, +card.getAttribute('data-from'), false,
+         +card.getAttribute('data-to'), card.querySelector('b').textContent);
+});
 function closeOv(){
   clearTimeout(timer); playing=false;
   ov.classList.remove('open');
@@ -1833,11 +2015,11 @@ function closeOv(){
 ovPP.addEventListener('click',function(){ playing?pause():resume(); });
 q('#ovNext').addEventListener('click',function(){ goScene(cur+1); });
 q('#ovPrev').addEventListener('click',function(){ goScene(cur-1); });
-ctaBtn.addEventListener('click',function(){openOv(ctaBtn);});
-q('#stickyBtn').addEventListener('click',function(){openOv(q('#stickyBtn'));});
+ctaBtn.addEventListener('click',function(){openOv(ctaBtn,0,true,SCENES.length-1,'');});
+q('#stickyBtn').addEventListener('click',function(){openOv(q('#stickyBtn'),0,true,SCENES.length-1,'');});
 q('#ovSkip').addEventListener('click',closeOv);
 q('#ovClose').addEventListener('click',closeOv);
-q('#ovReplay').addEventListener('click',startShow);
+q('#ovReplay').addEventListener('click',function(){ startShow(0,true,SCENES.length-1,''); });
 document.addEventListener('keydown',function(e){
   if(ov.hidden) return;
   if(e.key==='Escape'){ closeOv(); return; }
